@@ -1,0 +1,3 @@
+<beans>
+    <bean id = "aservice" class = "org.homelessYSU.testClassPathXmlApplicationContext.impl.AServiceImpl"></bean>
+</beans>

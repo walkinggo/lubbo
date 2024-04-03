@@ -53,11 +53,11 @@ public class ArgumentValues {
     }
 
     public int getArgumentCount() {
-        return this.genericArgumentValues.size();
+        return this.indexedArgumentValues.size();
     }
 
     public boolean isEmpty() {
-        return this.genericArgumentValues.isEmpty();
+        return this.indexedArgumentValues.isEmpty();
     }
 
 }

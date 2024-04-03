@@ -8,5 +8,6 @@ public class Test01 {
         ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
         AService aservice = (AService) ctx.getBean("aservice");
         aservice.sayHello();
+        System.out.println(aservice);
     }
 }

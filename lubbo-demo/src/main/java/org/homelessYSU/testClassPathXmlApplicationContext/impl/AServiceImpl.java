@@ -9,12 +9,12 @@ public class AServiceImpl implements AService {
     private String property2;
 
     public AServiceImpl() {
-        System.out.println("in empty constructor");
+//        System.out.println("in empty constructor");
     }
     public AServiceImpl(String name, int level) {
         this.name = name;
         this.level = level;
-        System.out.println("in constructor" + this.name + "," + this.level);
+//        System.out.println("in constructor" + this.name + "," + this.level);
     }
     public void sayHello() {
         System.out.println(this.property1 + "," + this.property2 + ",name:" + this.name);

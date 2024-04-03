@@ -1,5 +1,9 @@
 package org.homelessYSU;
 
+import org.homelessYSU.factory.BeanFactory;
+import org.homelessYSU.factory.support.SimpleBeanFactory;
+import org.homelessYSU.factory.xml.XmlBeanDefinitionReader;
+
 /**
  * @param
  * @description:通过XML文件获得的xml上下文信息，并实例化beans.

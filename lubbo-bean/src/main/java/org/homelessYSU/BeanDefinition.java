@@ -1,7 +1,7 @@
 package org.homelessYSU;
 
-import org.homelessYSU.DI.ArgumentValues;
-import org.homelessYSU.DI.PropertyValues;
+import org.homelessYSU.factory.config.ArgumentValues;
+import org.homelessYSU.factory.config.PropertyValues;
 
 public class BeanDefinition {
     String SCOPE_SINGLETON = "singleton";

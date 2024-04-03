@@ -1,4 +1,4 @@
-package org.homelessYSU.DI;
+package org.homelessYSU.factory.config;
 /**
  * @description:通过set方法进行依赖注入的属性
  * @param
@@ -10,11 +10,13 @@ public class PropertyValue {
     private final String type;
     private final String name;
     private final Object value;
+    private final boolean isRef;
 
-    public PropertyValue(String type, String name, Object value) {
+    public PropertyValue(String type, String name, Object value, boolean isRef) {
         this.type = type;
         this.name = name;
         this.value = value;
+        this.isRef = isRef;
     }
 
     public String getType() {
@@ -27,5 +29,9 @@ public class PropertyValue {
 
     public Object getValue() {
         return this.value;
+    }
+
+    public boolean getIsRef() {
+        return isRef;
     }
 }

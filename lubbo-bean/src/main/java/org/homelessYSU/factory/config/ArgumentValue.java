@@ -1,4 +1,4 @@
-package org.homelessYSU.DI;
+package org.homelessYSU.factory.config;
 /**
  * @description:通过构造器方法进行依赖注入的属性
  * @param

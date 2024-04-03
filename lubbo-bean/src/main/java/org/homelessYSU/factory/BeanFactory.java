@@ -1,4 +1,6 @@
-package org.homelessYSU;
+package org.homelessYSU.factory;
+
+import org.homelessYSU.BeansException;
 
 public interface BeanFactory {
     Object getBean(String beanName) throws BeansException;

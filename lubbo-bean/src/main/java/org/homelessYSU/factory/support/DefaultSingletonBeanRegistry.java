@@ -1,4 +1,6 @@
-package org.homelessYSU;
+package org.homelessYSU.factory.support;
+
+import org.homelessYSU.factory.config.SingletonBeanRegistry;
 
 import java.util.ArrayList;
 import java.util.List;

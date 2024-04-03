@@ -7,15 +7,24 @@ public class AServiceImpl implements AService {
     private int level;
     private String property1;
     private String property2;
+    private BaseService ref1;
 
     public AServiceImpl() {
-//        System.out.println("in empty constructor");
     }
+
     public AServiceImpl(String name, int level) {
         this.name = name;
         this.level = level;
-//        System.out.println("in constructor" + this.name + "," + this.level);
     }
+
+    public BaseService getRef1() {
+        return ref1;
+    }
+
+    public void setRef1(BaseService ref1) {
+        this.ref1 = ref1;
+    }
+
     public void sayHello() {
         System.out.println(this.property1 + "," + this.property2 + ",name:" + this.name);
     }

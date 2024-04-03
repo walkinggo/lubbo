@@ -1,4 +1,4 @@
-package org.homelessYSU;
+package org.homelessYSU.factory.config;
 
 public interface SingletonBeanRegistry {
     void registerSingleton(String beanName,Object singletonObject);

@@ -1,21 +1,15 @@
 package org.homelessYSU.factory.config;
-/**
- * @description:通过构造器方法进行依赖注入的属性
- * @param
- * @return:
- * @author: walkinggo
- * @time: 2024/4/2 21:53
- */
-public class ArgumentValue {
+
+public class ConstructorArgumentValue {
     private Object value;
     private String type;
     private String name;
 
-    public ArgumentValue(String type, Object value) {
+    public ConstructorArgumentValue(String type, Object value) {
         this.value = value;
         this.type = type;
     }
-    public ArgumentValue(String type, String name, Object value) {
+    public ConstructorArgumentValue(String type, String name, Object value) {
         this.value = value;
         this.type = type;
         this.name = name;
@@ -44,4 +38,5 @@ public class ArgumentValue {
     public String getName() {
         return this.name;
     }
+
 }

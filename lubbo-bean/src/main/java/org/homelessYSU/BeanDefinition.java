@@ -1,7 +1,7 @@
 package org.homelessYSU;
 
-import org.homelessYSU.factory.config.ArgumentValues;
-import org.homelessYSU.factory.config.PropertyValues;
+
+import org.homelessYSU.factory.config.ConstructorArgumentValues;
 
 public class BeanDefinition {
     String SCOPE_SINGLETON = "singleton";
@@ -9,7 +9,7 @@ public class BeanDefinition {
 
     private boolean lazyInit = true;
     private String[] dependsOn;
-    private ArgumentValues constructorArgumentValues;
+    private ConstructorArgumentValues constructorArgumentValues;
 
     private PropertyValues propertyValues;
     private String initMethodName;
@@ -17,20 +17,17 @@ public class BeanDefinition {
     private volatile Object beanClass;
     private String id;
     private String className;
-    private String scope = SCOPE_SINGLETON;
+    private String scope=SCOPE_SINGLETON;
 
     public String getId() {
         return id;
     }
-
     public void setId(String id) {
         this.id = id;
     }
-
     public String getClassName() {
         return className;
     }
-
     public void setClassName(String className) {
         this.className = className;
     }
@@ -48,7 +45,7 @@ public class BeanDefinition {
         this.beanClass = beanClass;
     }
 
-    public Class<?> getBeanClass() {
+    public Class<?> getBeanClass(){
 
         return (Class<?>) this.beanClass;
     }
@@ -85,19 +82,18 @@ public class BeanDefinition {
         return this.dependsOn;
     }
 
-    public void setConstructorArgumentValues(ArgumentValues constructorArgumentValues) {
+    public void setConstructorArgumentValues(ConstructorArgumentValues constructorArgumentValues) {
         this.constructorArgumentValues =
-                (constructorArgumentValues != null ? constructorArgumentValues : new ArgumentValues());
+                (constructorArgumentValues != null ? constructorArgumentValues : new ConstructorArgumentValues());
     }
 
-    public ArgumentValues getConstructorArgumentValues() {
+    public ConstructorArgumentValues getConstructorArgumentValues() {
         return this.constructorArgumentValues;
     }
 
     public boolean hasConstructorArgumentValues() {
         return !this.constructorArgumentValues.isEmpty();
     }
-
     public void setPropertyValues(PropertyValues propertyValues) {
         this.propertyValues = (propertyValues != null ? propertyValues : new PropertyValues());
     }
@@ -105,7 +101,6 @@ public class BeanDefinition {
     public PropertyValues getPropertyValues() {
         return this.propertyValues;
     }
-
     public void setInitMethodName(String initMethodName) {
         this.initMethodName = initMethodName;
     }
@@ -113,6 +108,5 @@ public class BeanDefinition {
     public String getInitMethodName() {
         return this.initMethodName;
     }
-
 
 }

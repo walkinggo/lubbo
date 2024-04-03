@@ -1,4 +1,4 @@
-package org.homelessYSU.factory.config;
+package org.homelessYSU;
 /**
  * @description:通过构造器方法进行依赖注入的属性
  * @param
@@ -44,4 +44,5 @@ public class ArgumentValue {
     public String getName() {
         return this.name;
     }
+
 }

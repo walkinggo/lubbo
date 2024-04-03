@@ -1,12 +1,13 @@
 package org.homelessYSU.factory.support;
 
+import org.homelessYSU.factory.config.AbstractAutowireCapableBeanFactory;
+import org.homelessYSU.factory.config.ConfigurableListableBeanFactory;
 import org.homelessYSU.factory.config.SingletonBeanRegistry;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class DefaultSingletonBeanRegistry implements SingletonBeanRegistry {
-
+public class DefaultSingletonBeanRegistry  implements SingletonBeanRegistry {
     protected List<String> beanNames=new ArrayList<>();
     protected Map<String, Object> singletonObjects =new ConcurrentHashMap<>(256);
     protected Map<String,Set<String>> dependentBeanMap = new ConcurrentHashMap<>(64);
@@ -93,5 +94,4 @@ public class DefaultSingletonBeanRegistry implements SingletonBeanRegistry {
         return (String[]) dependenciesForBean.toArray();
 
     }
-
 }

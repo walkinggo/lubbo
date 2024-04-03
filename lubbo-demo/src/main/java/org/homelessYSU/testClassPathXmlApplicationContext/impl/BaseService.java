@@ -1,21 +1,21 @@
 package org.homelessYSU.testClassPathXmlApplicationContext.impl;
 
-public class BaseService {
-    private BaseBaseService bbs;
+import org.homelessYSU.factory.annotation.Autowired;
 
-    public BaseService() {
-    }
+public class BaseService {
+    @Autowired
+    private BaseBaseService bbs;
 
     public BaseBaseService getBbs() {
         return bbs;
     }
-
     public void setBbs(BaseBaseService bbs) {
         this.bbs = bbs;
     }
-
+    public BaseService() {
+    }
     public void sayHello() {
-        System.out.println("Base Service say hello");
+        System.out.print("Base Service says hello");
         bbs.sayHello();
     }
 }

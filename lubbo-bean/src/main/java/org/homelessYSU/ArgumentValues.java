@@ -1,4 +1,6 @@
-package org.homelessYSU.factory.config;
+package org.homelessYSU;
+
+import org.homelessYSU.ArgumentValue;
 
 import java.util.*;
 
@@ -24,5 +26,4 @@ public class ArgumentValues {
     public boolean isEmpty() {
         return (this.argumentValueList.isEmpty());
     }
-
 }

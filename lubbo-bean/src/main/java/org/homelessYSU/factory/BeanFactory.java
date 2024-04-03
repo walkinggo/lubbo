@@ -10,5 +10,4 @@ public interface BeanFactory {
     boolean isPrototype(String name);
     Class<?> getType(String name);
 
-
 }

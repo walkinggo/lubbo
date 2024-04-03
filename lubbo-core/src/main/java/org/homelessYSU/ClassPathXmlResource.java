@@ -21,12 +21,12 @@ public class ClassPathXmlResource implements Resource {
     Iterator<Element> elementIterator;
 
     public ClassPathXmlResource(String fileName) {
-        SAXReader saxReader = new SAXReader();
-        URL xmlPath = this.getClass().getClassLoader().getResource(fileName);
-        try{
+        SAXReader saxReader=new SAXReader();
+        URL xmlPath=this.getClass().getClassLoader().getResource(fileName);
+        try {
             this.document = saxReader.read(xmlPath);
-            this.rootElement = document.getRootElement();
-            this.elementIterator = this.rootElement.elementIterator();
+            this.rootElement=document.getRootElement();
+            this.elementIterator=this.rootElement.elementIterator();
         } catch (DocumentException e) {
             e.printStackTrace();
         }
@@ -41,4 +41,6 @@ public class ClassPathXmlResource implements Resource {
     public Object next() {
         return this.elementIterator.next();
     }
+
+
 }

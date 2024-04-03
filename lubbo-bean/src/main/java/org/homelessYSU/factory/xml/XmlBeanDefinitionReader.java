@@ -2,13 +2,10 @@ package org.homelessYSU.factory.xml;
 
 
 import org.dom4j.Element;
-import org.homelessYSU.BeanDefinition;
-import org.homelessYSU.Resource;
-import org.homelessYSU.factory.config.AutowireCapableBeanFactory;
-import org.homelessYSU.factory.config.ArgumentValue;
-import org.homelessYSU.factory.config.ArgumentValues;
-import org.homelessYSU.factory.config.PropertyValue;
-import org.homelessYSU.factory.config.PropertyValues;
+import org.homelessYSU.*;
+import org.homelessYSU.factory.support.AbstractBeanFactory;
+import org.homelessYSU.factory.config.*;
+import org.homelessYSU.factory.support.DefaultListableBeanFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,28 +18,26 @@ import java.util.List;
  * @time: 2024/4/2 20:07
  */
 public class XmlBeanDefinitionReader {
-    AutowireCapableBeanFactory bf;
-
-    public XmlBeanDefinitionReader(AutowireCapableBeanFactory bf) {
+    DefaultListableBeanFactory bf;
+    public XmlBeanDefinitionReader(DefaultListableBeanFactory bf) {
         this.bf = bf;
     }
-
     public void loadBeanDefinitions(Resource res) {
         while (res.hasNext()) {
-            Element element = (Element) res.next();
-            String beanID = element.attributeValue("id");
-            String beanClassName = element.attributeValue("class");
+            Element element = (Element)res.next();
+            String beanID=element.attributeValue("id");
+            String beanClassName=element.attributeValue("class");
 
-            BeanDefinition beanDefinition = new BeanDefinition(beanID, beanClassName);
+            BeanDefinition beanDefinition=new BeanDefinition(beanID,beanClassName);
 
             //get constructor
             List<Element> constructorElements = element.elements("constructor-arg");
-            ArgumentValues AVS = new ArgumentValues();
+            ConstructorArgumentValues AVS = new ConstructorArgumentValues();
             for (Element e : constructorElements) {
                 String pType = e.attributeValue("type");
                 String pName = e.attributeValue("name");
                 String pValue = e.attributeValue("value");
-                AVS.addArgumentValue(new ArgumentValue(pType, pName, pValue));
+                AVS.addArgumentValue(new ConstructorArgumentValue(pType,pName,pValue));
             }
             beanDefinition.setConstructorArgumentValues(AVS);
             //end of handle constructor
@@ -73,9 +68,10 @@ public class XmlBeanDefinitionReader {
             beanDefinition.setDependsOn(refArray);
             //end of handle properties
 
-            this.bf.registerBeanDefinition(beanID, beanDefinition);
+            this.bf.registerBeanDefinition(beanID,beanDefinition);
         }
     }
+
 
 
 }

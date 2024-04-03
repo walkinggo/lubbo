@@ -1,9 +1,11 @@
-package org.homelessYSU.factory.config;
+package org.homelessYSU;
+
+import org.homelessYSU.PropertyValue;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PropertyValues {
+public class PropertyValues{
     private final List<PropertyValue> propertyValueList;
 
     public PropertyValues() {

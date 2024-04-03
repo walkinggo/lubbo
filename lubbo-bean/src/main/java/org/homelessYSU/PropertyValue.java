@@ -1,4 +1,4 @@
-package org.homelessYSU.factory.config;
+package org.homelessYSU;
 /**
  * @description:通过set方法进行依赖注入的属性
  * @param
@@ -6,7 +6,7 @@ package org.homelessYSU.factory.config;
  * @author: walkinggo
  * @time: 2024/4/2 21:52
  */
-public class PropertyValue {
+public class PropertyValue{
     private final String type;
     private final String name;
     private final Object value;
@@ -34,4 +34,5 @@ public class PropertyValue {
     public boolean getIsRef() {
         return isRef;
     }
+
 }

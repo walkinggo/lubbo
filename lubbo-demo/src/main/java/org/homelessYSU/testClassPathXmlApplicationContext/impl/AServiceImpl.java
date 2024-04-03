@@ -9,40 +9,12 @@ public class AServiceImpl implements AService {
     private String property2;
     private BaseService ref1;
 
-    public AServiceImpl() {
-    }
-
-    public AServiceImpl(String name, int level) {
-        this.name = name;
-        this.level = level;
-    }
-
     public BaseService getRef1() {
         return ref1;
     }
 
-    public void setRef1(BaseService ref1) {
-        this.ref1 = ref1;
-    }
-
-    public void sayHello() {
-        System.out.println(this.property1 + "," + this.property2 + ",name:" + this.name);
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getLevel() {
-        return level;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
+    public void setRef1(BaseService bs) {
+        this.ref1 = bs;
     }
 
     public String getProperty1() {
@@ -61,4 +33,16 @@ public class AServiceImpl implements AService {
         this.property2 = property2;
     }
 
+    public AServiceImpl() {
+    }
+
+    public AServiceImpl(String name, int level) {
+        this.name = name;
+        this.level = level;
+    }
+
+    public void sayHello() {
+        System.out.print(this.property1 + "," + this.property2);
+        ref1.sayHello();
+    }
 }

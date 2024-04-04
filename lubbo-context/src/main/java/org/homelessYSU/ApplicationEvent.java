@@ -1,7 +1,13 @@
 package org.homelessYSU;
 
 import java.util.EventObject;
-
+/**
+ * @description:简单的应用事件的例子
+ * @param
+ * @return:
+ * @author: walkinggo
+ * @time: 2024/4/4 16:13
+ */
 public class ApplicationEvent extends EventObject {
 
     private static final long serialVersionUID = 1L;

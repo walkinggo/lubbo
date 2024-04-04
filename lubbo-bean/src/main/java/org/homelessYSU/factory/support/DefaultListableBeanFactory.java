@@ -9,7 +9,13 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
+/**
+ * @description:实现了默认的对单例bean管理的方法
+ * @param
+ * @return:
+ * @author: walkinggo
+ * @time: 2024/4/4 15:54
+ */
 public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFactory
         implements ConfigurableListableBeanFactory{
 

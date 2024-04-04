@@ -1,5 +1,11 @@
 package org.homelessYSU.env;
-
+/**
+ * @description:处理环境
+ * @param
+ * @return:
+ * @author: walkinggo
+ * @time: 2024/4/4 16:17
+ */
 public interface PropertyResolver {
     boolean containsProperty(String key);
 

@@ -63,6 +63,7 @@ public class ClassPathXmlApplicationContext extends AbstractApplicationContext {
     }
 
     //    @Override
+    // 在这里注册了autowired处理器，这样就可以自动填充@autowired标注的东西了。
     protected void registerBeanPostProcessors(ConfigurableListableBeanFactory bf) {
         this.beanFactory.addBeanPostProcessor(new AutowiredAnnotationBeanPostProcessor());
     }

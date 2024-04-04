@@ -8,7 +8,13 @@ import org.homelessYSU.factory.ListableBeanFactory;
 import org.homelessYSU.factory.config.BeanFactoryPostProcessor;
 import org.homelessYSU.factory.config.ConfigurableBeanFactory;
 import org.homelessYSU.factory.config.ConfigurableListableBeanFactory;
-
+/**
+ * @description:规定了上下文的规范。
+ * @param
+ * @return:
+ * @author: walkinggo
+ * @time: 2024/4/4 16:10
+ */
 public interface ApplicationContext
         extends EnvironmentCapable, ListableBeanFactory, ConfigurableBeanFactory, ApplicationEventPublisher{
     String getApplicationName();

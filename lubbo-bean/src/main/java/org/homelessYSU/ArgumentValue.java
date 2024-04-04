@@ -1,6 +1,6 @@
 package org.homelessYSU;
 /**
- * @description:通过构造器方法进行依赖注入的属性
+ * @description:通过xml的constructor-args进行构造器依赖注入的属性
  * @param
  * @return:
  * @author: walkinggo

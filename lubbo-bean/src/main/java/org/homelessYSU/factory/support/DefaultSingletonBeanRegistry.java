@@ -7,6 +7,13 @@ import org.homelessYSU.factory.config.SingletonBeanRegistry;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * @description:抽取了默认的单例bean相关方法。
+ * @param
+ * @return:
+ * @author: walkinggo
+ * @time: 2024/4/4 14:38
+ */
 public class DefaultSingletonBeanRegistry  implements SingletonBeanRegistry {
     protected List<String> beanNames=new ArrayList<>();
     protected Map<String, Object> singletonObjects =new ConcurrentHashMap<>(256);

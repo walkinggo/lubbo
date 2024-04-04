@@ -1,5 +1,11 @@
 package org.homelessYSU.factory.config;
-
+/**
+ * @description:创建bean时的构造器参数
+ * @param
+ * @return:
+ * @author: walkinggo
+ * @time: 2024/4/4 16:03
+ */
 public class ConstructorArgumentValue {
     private Object value;
     private String type;

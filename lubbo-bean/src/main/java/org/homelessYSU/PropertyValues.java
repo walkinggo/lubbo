@@ -4,7 +4,13 @@ import org.homelessYSU.PropertyValue;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * @description:管理PropertyValue
+ * @param
+ * @return:
+ * @author: walkinggo
+ * @time: 2024/4/4 16:12
+ */
 public class PropertyValues{
     private final List<PropertyValue> propertyValueList;
 

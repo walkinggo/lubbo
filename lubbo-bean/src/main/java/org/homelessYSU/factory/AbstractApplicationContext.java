@@ -11,6 +11,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
+/**
+ * @description:实现了beanFactory的刷新。同时具备对beanFactory里面的singleton进行处理的能力。
+ * @param
+ * @return:
+ * @author: walkinggo
+ * @time: 2024/4/4 16:09
+ */
 public abstract class AbstractApplicationContext implements ApplicationContext{
     private Environment environment;
 

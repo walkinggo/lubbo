@@ -34,7 +34,7 @@ public abstract class AbstractAutowireCapableBeanFactory
         }
         return result;
     }
-
+    // todo 前置操作和后置操作是一样的
     public Object applyBeanPostProcessorsAfterInitialization(Object existingBean, String beanName)
             throws BeansException {
 

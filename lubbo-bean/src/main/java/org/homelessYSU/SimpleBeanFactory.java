@@ -23,7 +23,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @param
- * @description:存储具体的bean信息，包括bean的名字，单例和bean定义
+ * @description:存储具体的bean信息，包括bean的名字，单例和bean定义。随着版本更新已被淘汰。
  * @return:
  * @author: walkinggo
  * @time: 2024/4/2 20:07

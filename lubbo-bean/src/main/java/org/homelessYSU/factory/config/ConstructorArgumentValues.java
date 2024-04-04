@@ -2,7 +2,13 @@ package org.homelessYSU.factory.config;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * @description:管理一个bean的所有构造器的参数
+ * @param
+ * @return:
+ * @author: walkinggo
+ * @time: 2024/4/4 16:03
+ */
 public class ConstructorArgumentValues {
     private final List<ConstructorArgumentValue> argumentValueList = new ArrayList<ConstructorArgumentValue>();
 

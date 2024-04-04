@@ -2,7 +2,13 @@ package org.homelessYSU;
 
 
 import org.homelessYSU.factory.config.ConstructorArgumentValues;
-
+/**
+ * @description:bean的定义
+ * @param
+ * @return:
+ * @author: walkinggo
+ * @time: 2024/4/4 14:41
+ */
 public class BeanDefinition {
     String SCOPE_SINGLETON = "singleton";
     String SCOPE_PROTOTYPE = "prototype";

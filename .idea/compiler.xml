@@ -6,12 +6,15 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="lubbo-demo" />
-        <module name="lubbo-context" />
-        <module name="lubbo-mvc" />
-        <module name="lubbo-bean" />
-        <module name="lubbo-core" />
+        <module name="lubbo" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="lubbo-bean" target="1.8" />
+      <module name="lubbo-context" target="1.8" />
+      <module name="lubbo-core" target="1.8" />
+      <module name="lubbo-demo" target="1.8" />
+      <module name="lubbo-mvc" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="lubbo-demo" />
         <module name="lubbo-context" />
+        <module name="lubbo-mvc" />
         <module name="lubbo-bean" />
         <module name="lubbo-core" />
       </profile>

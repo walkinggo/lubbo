@@ -13,6 +13,7 @@
         <module>lubbo-demo</module>
         <module>lubbo-context</module>
         <module>lubbo-core</module>
+        <module>lubbo-mvc</module>
     </modules>
 
     <dependencies>

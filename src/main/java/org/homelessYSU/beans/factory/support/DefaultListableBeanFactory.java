@@ -1,5 +1,7 @@
 package org.homelessYSU.beans.factory.support;
 
+
+
 import org.homelessYSU.beans.BeanDefinition;
 import org.homelessYSU.beans.BeansException;
 import org.homelessYSU.beans.factory.config.AbstractAutowireCapableBeanFactory;
@@ -9,15 +11,12 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-/**
- * @description:实现了默认的对单例bean管理的方法
- * @param
- * @return:
- * @author: walkinggo
- * @time: 2024/4/4 15:54
- */
+
+
+
 public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFactory
-        implements ConfigurableListableBeanFactory{
+        implements ConfigurableListableBeanFactory {
+    ConfigurableListableBeanFactory parentBeanFctory;
 
     @Override
     public int getBeanDefinitionCount() {
@@ -26,7 +25,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 
     @Override
     public String[] getBeanDefinitionNames() {
-        return (String[]) this.beanDefinitionNames.toArray();
+        return (String[])this.beanDefinitionNames.toArray(new String[this.beanDefinitionNames.size()]);
     }
 
     @Override
@@ -61,6 +60,20 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
             Object beanInstance = getBean(beanName);
             result.put(beanName, (T) beanInstance);
         }
+        return result;
+    }
+
+    public void setParent(ConfigurableListableBeanFactory beanFactory) {
+        this.parentBeanFctory = beanFactory;
+    }
+
+    @Override
+    public Object getBean(String beanName) throws BeansException {
+        Object result = super.getBean(beanName);
+        if (result == null) {
+            result = this.parentBeanFctory.getBean(beanName);
+        }
+
         return result;
     }
 

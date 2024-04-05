@@ -1,13 +1,9 @@
 package org.homelessYSU.web;
 
+
 import org.homelessYSU.beans.BeansException;
 import org.homelessYSU.beans.factory.annotation.Autowired;
 
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -20,6 +16,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 
 /**
  * Servlet implementation class DispatcherServlet
@@ -30,13 +33,13 @@ public class DispatcherServlet extends HttpServlet {
 
     private String sContextConfigLocation;
     private List<String> packageNames = new ArrayList<>();
-    private Map<String, Object> controllerObjs = new HashMap<>();
+    private Map<String,Object> controllerObjs = new HashMap<>();
     private List<String> controllerNames = new ArrayList<>();
-    private Map<String, Class<?>> controllerClasses = new HashMap<>();
+    private Map<String,Class<?>> controllerClasses = new HashMap<>();
 
     private List<String> urlMappingNames = new ArrayList<>();
-    private Map<String, Object> mappingObjs = new HashMap<>();
-    private Map<String, Method> mappingMethods = new HashMap<>();
+    private Map<String,Object> mappingObjs = new HashMap<>();
+    private Map<String,Method> mappingMethods = new HashMap<>();
 
     public DispatcherServlet() {
         super();
@@ -74,17 +77,16 @@ public class DispatcherServlet extends HttpServlet {
         for (String controllerName : this.controllerNames) {
             Object obj = null;
             Class<?> clz = null;
-
             try {
                 clz = Class.forName(controllerName);
-                this.controllerClasses.put(controllerName, clz);
+                this.controllerClasses.put(controllerName,clz);
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
             try {
                 obj = clz.newInstance();
 
-                populateBean(obj, controllerName);
+                populateBean(obj,controllerName);
 
                 this.controllerObjs.put(controllerName, obj);
             } catch (InstantiationException e) {
@@ -103,10 +105,10 @@ public class DispatcherServlet extends HttpServlet {
 
         Class<?> clazz = bean.getClass();
         Field[] fields = clazz.getDeclaredFields();
-        if (fields != null) {
-            for (Field field : fields) {
+        if(fields!=null){
+            for(Field field : fields){
                 boolean isAutowired = field.isAnnotationPresent(Autowired.class);
-                if (isAutowired) {
+                if(isAutowired){
                     String fieldName = field.getName();
                     Object autowiredObj = this.webApplicationContext.getBean(fieldName);
                     try {
@@ -136,14 +138,13 @@ public class DispatcherServlet extends HttpServlet {
 
     private List<String> scanPackage(String packageName) {
         List<String> tempControllerNames = new ArrayList<>();
-//        URL url = this.getClass().getClassLoader().getResource("/" + packageName.replaceAll("\\.", "/"));
-        URL url = this.getClass().getResource("/" + packageName.replaceAll("\\.", "/"));
+        URL url  =this.getClass().getClassLoader().getResource("/"+packageName.replaceAll("\\.", "/"));
         File dir = new File(url.getFile());
         for (File file : dir.listFiles()) {
-            if (file.isDirectory()) {
-                scanPackage(packageName + "." + file.getName());
-            } else {
-                String controllerName = packageName + "." + file.getName().replace(".class", "");
+            if(file.isDirectory()){
+                tempControllerNames.addAll(scanPackage(packageName+"."+file.getName()));
+            }else{
+                String controllerName = packageName +"." +file.getName().replace(".class", "");
                 tempControllerNames.add(controllerName);
             }
         }
@@ -155,10 +156,10 @@ public class DispatcherServlet extends HttpServlet {
             Class<?> clazz = this.controllerClasses.get(controllerName);
             Object obj = this.controllerObjs.get(controllerName);
             Method[] methods = clazz.getDeclaredMethods();
-            if (methods != null) {
-                for (Method method : methods) {
+            if(methods!=null){
+                for(Method method : methods){
                     boolean isRequestMapping = method.isAnnotationPresent(RequestMapping.class);
-                    if (isRequestMapping) {
+                    if (isRequestMapping){
                         String methodName = method.getName();
                         String urlmapping = method.getAnnotation(RequestMapping.class).value();
                         this.urlMappingNames.add(urlmapping);

@@ -1,4 +1,4 @@
-package org.homelessYSU.testClassPathXmlApplicationContext.impl;
+package org.homelessYSU.test.testClassPathXmlApplicationContext.impl;
 
 public class BaseBaseService {
     private AServiceImpl as;

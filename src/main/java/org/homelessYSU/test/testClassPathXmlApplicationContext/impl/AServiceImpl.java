@@ -1,8 +1,6 @@
-package org.homelessYSU.testClassPathXmlApplicationContext.impl;
+package org.homelessYSU.test.testClassPathXmlApplicationContext.impl;
 
-import org.homelessYSU.testClassPathXmlApplicationContext.AService;
-
-public class AServiceImpl implements AService {
+public class AServiceImpl {
     private String name;
     private int level;
     private String property1;

@@ -29,7 +29,7 @@ public class DefaultSingletonBeanRegistry  implements SingletonBeanRegistry {
 
             this.singletonObjects.put(beanName, singletonObject);
             this.beanNames.add(beanName);
-            System.out.println(" bean registerded............. " + beanName);
+            System.out.println("bean registerded -------------- " + beanName);
         }
     }
 

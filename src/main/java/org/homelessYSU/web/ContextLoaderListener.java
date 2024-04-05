@@ -1,8 +1,8 @@
 package org.homelessYSU.web;
-
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import javax.servlet.annotation.WebListener;
 
 public class ContextLoaderListener implements ServletContextListener {
     public static final String CONFIG_LOCATION_PARAM = "contextConfigLocation";
@@ -26,8 +26,8 @@ public class ContextLoaderListener implements ServletContextListener {
 
     private void initWebApplicationContext(ServletContext servletContext) {
         String sContextLocation = servletContext.getInitParameter(CONFIG_LOCATION_PARAM);
-        System.out.println("sContextLocation-----------" + sContextLocation);
-        WebApplicationContext wac = new AnnotationConfigWebApplicationContext(sContextLocation);
+
+        WebApplicationContext wac = new XmlWebApplicationContext(sContextLocation);
         wac.setServletContext(servletContext);
         this.context = wac;
         servletContext.setAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE, this.context);

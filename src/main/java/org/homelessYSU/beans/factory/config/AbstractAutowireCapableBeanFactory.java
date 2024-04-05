@@ -1,10 +1,13 @@
 package org.homelessYSU.beans.factory.config;
 
+
+
 import org.homelessYSU.beans.BeansException;
 import org.homelessYSU.beans.factory.support.AbstractBeanFactory;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 public abstract class AbstractAutowireCapableBeanFactory
         extends AbstractBeanFactory implements AutowireCapableBeanFactory{
@@ -34,7 +37,7 @@ public abstract class AbstractAutowireCapableBeanFactory
         }
         return result;
     }
-    // todo 前置操作和后置操作是一样的
+
     public Object applyBeanPostProcessorsAfterInitialization(Object existingBean, String beanName)
             throws BeansException {
 

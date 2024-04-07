@@ -1,8 +1,14 @@
 package org.homelessYSU.test.test;
 
+import org.homelessYSU.beans.factory.annotation.Autowired;
+import org.homelessYSU.test.testClassPathXmlApplicationContext.impl.BaseService;
 import org.homelessYSU.web.RequestMapping;
 
 public class HelloWorldBean {
+
+    @Autowired
+    BaseService baseservice;
+
     @RequestMapping("/test1")
     public String doTest1() {
 //        ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
@@ -22,5 +28,9 @@ public class HelloWorldBean {
     @RequestMapping("/test2")
     public String doTest2() {
         return "test 2, hello world!";
+    }
+    @RequestMapping("/test3")
+    public String doTest3() {
+        return 5 + " "  + baseservice.getBbs().getAs().getProperty1();
     }
 }

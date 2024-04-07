@@ -15,6 +15,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -26,7 +27,9 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class DispatcherServlet
  */
+
 public class DispatcherServlet extends HttpServlet {
+
     private static final long serialVersionUID = 1L;
     public static final String WEB_APPLICATION_CONTEXT_ATTRIBUTE = DispatcherServlet.class.getName() + ".CONTEXT";
     private WebApplicationContext webApplicationContext;
@@ -49,11 +52,18 @@ public class DispatcherServlet extends HttpServlet {
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
 
+        System.out.println(".____     ____ _______________________ ________   \n" +
+                "|    |   |    |   \\______   \\______   \\\\_____  \\  \n" +
+                "|    |   |    |   /|    |  _/|    |  _/ /   |   \\ \n" +
+                "|    |___|    |  / |    |   \\|    |   \\/    |    \\\n" +
+                "|_______ \\______/  |______  /|______  /\\_______  /\n" +
+                "        \\/                \\/        \\/         \\/ ");
 
         this.parentApplicationContext =
                 (WebApplicationContext) this.getServletContext().getAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE);
 
-        sContextConfigLocation = config.getInitParameter("contextConfigLocation");
+
+        sContextConfigLocation = getServletContext().getInitParameter("contextConfigLocation");
 
         URL xmlPath = null;
         try {
@@ -68,6 +78,7 @@ public class DispatcherServlet extends HttpServlet {
 
 
         Refresh();
+
 
     }
 

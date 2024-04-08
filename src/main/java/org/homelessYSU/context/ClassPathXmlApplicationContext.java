@@ -26,7 +26,7 @@ public class ClassPathXmlApplicationContext extends AbstractApplicationContext {
 
 
     public ClassPathXmlApplicationContext(String fileName, String packageLocation) {
-        this(fileName, true,packageLocation);
+        this(fileName, true, packageLocation);
     }
 
     public void loadComponentBean(String packageLocation) {
@@ -35,14 +35,17 @@ public class ClassPathXmlApplicationContext extends AbstractApplicationContext {
     }
 
     public ClassPathXmlApplicationContext(String fileName, boolean isRefresh, String packageLocation) {
-        Resource res = new ClassPathXmlResource(fileName);
         DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
-        XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(bf);
-        reader.loadBeanDefinitions(res);
+        if (fileName != null) {
+            Resource res = new ClassPathXmlResource(fileName);
+            XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(bf);
+            reader.loadBeanDefinitions(res);
+        }
 
 
         this.beanFactory = bf;
         this.loadComponentBean(packageLocation);
+
         if (isRefresh) {
             try {
                 refresh();

@@ -3,17 +3,14 @@ package org.homelessYSU;
 import org.apache.catalina.Context;
 import org.apache.catalina.LifecycleException;
 import org.apache.catalina.connector.Connector;
-import org.apache.catalina.core.StandardContext;
 import org.apache.catalina.startup.Tomcat;
 import org.homelessYSU.web.ContextLoaderListener;
 import org.homelessYSU.web.servlet.DispatcherServlet;
 
-import java.io.File;
 import java.net.URL;
-import java.security.CodeSource;
 
 public class LubboApplication {
-    public static void run(Class clazz){
+    public static void run(Class clazz) {
         URL location = clazz.getProtectionDomain().getCodeSource().getLocation();
         System.out.println(location);
         String name = clazz.getPackage().getName();
@@ -21,19 +18,23 @@ public class LubboApplication {
         run(name);
     }
 
-    public static void run(String packageLocation){
+    public static void run(String packageLocation) {
         Tomcat tomcat = new Tomcat();
         int port = 8080;
         tomcat.setPort(port); // 设置Tomcat的端口号
+        Context ctx = tomcat.addContext("", null);
+//
+//        Context ctx = tomcat.addWebapp("", new File("web").getAbsolutePath());
+        ctx.getServletContext().setAttribute("packageLocation", packageLocation);
+//
 
-        Context ctx = tomcat.addWebapp("", new File("web").getAbsolutePath());
-        ctx.getServletContext().setAttribute("packageLocation",packageLocation);
-//        tomcat.addServlet(ctx, "DispatcherServlet", new DispatcherServlet());
-//
-//
-//        ctx.addServletMappingDecoded("/", "DispatcherServlet");
-//        ctx.addLifecycleListener(new Tomcat.FixContextListener());
-//        ctx.addApplicationListener(ContextLoaderListener.class.getName());
+
+        tomcat.addServlet(ctx, "DispatcherServlet", new DispatcherServlet());
+
+
+        ctx.addServletMappingDecoded("/", "DispatcherServlet");
+        ctx.addLifecycleListener(new Tomcat.FixContextListener());
+        ctx.addApplicationListener(ContextLoaderListener.class.getName());
 
         Connector connector = new Connector();
         connector.setPort(8080);

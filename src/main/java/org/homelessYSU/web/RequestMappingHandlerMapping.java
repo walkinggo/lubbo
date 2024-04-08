@@ -1,6 +1,7 @@
 package org.homelessYSU.web;
 
 import org.homelessYSU.beans.BeansException;
+import org.homelessYSU.beans.factory.annotation.LubboController;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -40,7 +41,7 @@ public class RequestMappingHandlerMapping implements HandlerMapping {
                     boolean isRequestMapping = method.isAnnotationPresent(RequestMapping.class);
                     if (isRequestMapping){
                         String methodName = method.getName();
-                        String urlmapping = method.getAnnotation(RequestMapping.class).value();
+                        String urlmapping = clz.getAnnotation(LubboController.class).ControllerUrl() + method.getAnnotation(RequestMapping.class).value();
                         this.mappingRegistry.getUrlMappingNames().add(urlmapping);
                         this.mappingRegistry.getMappingObjs().put(urlmapping, obj);
                         this.mappingRegistry.getMappingMethods().put(urlmapping, method);

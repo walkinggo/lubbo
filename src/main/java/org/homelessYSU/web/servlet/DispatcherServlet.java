@@ -64,12 +64,6 @@ public class DispatcherServlet extends HttpServlet {
 
         sContextConfigLocation = getServletContext().getInitParameter("contextConfigLocation");
 
-        URL xmlPath = null;
-        try {
-            xmlPath = this.getServletContext().getResource(sContextConfigLocation);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
 
         this.webApplicationContext = new AnnotationConfigWebApplicationContext((String) this.getServletContext().getAttribute("packageLocation"),this.parentApplicationContext);
 

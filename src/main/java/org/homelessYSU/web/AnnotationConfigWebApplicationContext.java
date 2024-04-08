@@ -8,18 +8,16 @@ import org.homelessYSU.beans.factory.config.BeanFactoryPostProcessor;
 import org.homelessYSU.beans.factory.config.ConfigurableListableBeanFactory;
 import org.homelessYSU.beans.factory.support.DefaultListableBeanFactory;
 
+import javax.servlet.ServletContext;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.ServletContext;
-
-
 
 public class AnnotationConfigWebApplicationContext
-        extends AbstractApplicationContext implements WebApplicationContext{
+        extends AbstractApplicationContext implements WebApplicationContext {
     private WebApplicationContext parentApplicationContext;
     private ServletContext servletContext;
     DefaultListableBeanFactory beanFactory;
@@ -61,12 +59,12 @@ public class AnnotationConfigWebApplicationContext
 
     public void loadBeanDefinitions(List<String> controllerNames) {
         for (String controller : controllerNames) {
-            String beanID=controller;
-            String beanClassName=controller;
+            String beanID = controller;
+            String beanClassName = controller;
 
-            BeanDefinition beanDefinition=new BeanDefinition(beanID,beanClassName);
+            BeanDefinition beanDefinition = new BeanDefinition(beanID, beanClassName);
 
-            this.beanFactory.registerBeanDefinition(beanID,beanDefinition);
+            this.beanFactory.registerBeanDefinition(beanID, beanDefinition);
         }
     }
 
@@ -81,13 +79,13 @@ public class AnnotationConfigWebApplicationContext
 
     private List<String> scanPackage(String packageName) {
         List<String> tempControllerNames = new ArrayList<>();
-        URL url  =this.getClass().getClassLoader().getResource("/"+packageName.replaceAll("\\.", "/"));
+        URL url = this.getClass().getClassLoader().getResource("/" + packageName.replaceAll("\\.", "/"));
         File dir = new File(url.getFile());
         for (File file : dir.listFiles()) {
-            if(file.isDirectory()){
-                tempControllerNames.addAll(scanPackage(packageName+"."+file.getName()));
-            }else{
-                String controllerName = packageName +"." +file.getName().replace(".class", "");
+            if (file.isDirectory()) {
+                tempControllerNames.addAll(scanPackage(packageName + "." + file.getName()));
+            } else {
+                String controllerName = packageName + "." + file.getName().replace(".class", "");
                 tempControllerNames.add(controllerName);
             }
         }

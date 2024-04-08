@@ -36,7 +36,6 @@ public class DispatcherServlet extends HttpServlet {
     private WebApplicationContext parentApplicationContext;
 
     private String sContextConfigLocation;
-    private List<String> packageNames = new ArrayList<>();
     private Map<String,Object> controllerObjs = new HashMap<>();
     private List<String> controllerNames = new ArrayList<>();
     private Map<String,Class<?>> controllerClasses = new HashMap<>();
@@ -72,9 +71,7 @@ public class DispatcherServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        this.packageNames = XmlScanComponentHelper.getNodeValue(xmlPath);
-
-        this.webApplicationContext = new AnnotationConfigWebApplicationContext(sContextConfigLocation,this.parentApplicationContext);
+        this.webApplicationContext = new AnnotationConfigWebApplicationContext((String) this.getServletContext().getAttribute("packageLocation"),this.parentApplicationContext);
 
 
         Refresh();

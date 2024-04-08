@@ -9,18 +9,25 @@ import org.homelessYSU.web.ContextLoaderListener;
 import org.homelessYSU.web.servlet.DispatcherServlet;
 
 import java.io.File;
+import java.net.URL;
+import java.security.CodeSource;
 
 public class LubboApplication {
     public static void run(Class clazz){
-        run();
+        URL location = clazz.getProtectionDomain().getCodeSource().getLocation();
+        System.out.println(location);
+        String name = clazz.getPackage().getName();
+        System.out.println("name = " + name);
+        run(name);
     }
 
-    public static void run(){
+    public static void run(String packageLocation){
         Tomcat tomcat = new Tomcat();
         int port = 8080;
         tomcat.setPort(port); // 设置Tomcat的端口号
 
         Context ctx = tomcat.addWebapp("", new File("web").getAbsolutePath());
+        ctx.getServletContext().setAttribute("packageLocation",packageLocation);
 //        tomcat.addServlet(ctx, "DispatcherServlet", new DispatcherServlet());
 //
 //

@@ -4,6 +4,7 @@ package org.homelessYSU.web;
 import org.homelessYSU.beans.*;
 import org.homelessYSU.beans.factory.AbstractApplicationContext;
 import org.homelessYSU.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor;
+import org.homelessYSU.beans.factory.annotation.LubboController;
 import org.homelessYSU.beans.factory.config.BeanFactoryPostProcessor;
 import org.homelessYSU.beans.factory.config.ConfigurableListableBeanFactory;
 import org.homelessYSU.beans.factory.support.DefaultListableBeanFactory;
@@ -13,6 +14,7 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -24,22 +26,24 @@ public class AnnotationConfigWebApplicationContext
     private final List<BeanFactoryPostProcessor> beanFactoryPostProcessors =
             new ArrayList<BeanFactoryPostProcessor>();
 
-    public AnnotationConfigWebApplicationContext(String fileName) {
-        this(fileName, null);
+    public AnnotationConfigWebApplicationContext(String packageLocation) {
+        this(packageLocation, null);
     }
 
-    public AnnotationConfigWebApplicationContext(String fileName, WebApplicationContext parentApplicationContext) {
+    public AnnotationConfigWebApplicationContext(String packageLocation, WebApplicationContext parentApplicationContext) {
         this.parentApplicationContext = parentApplicationContext;
         this.servletContext = this.parentApplicationContext.getServletContext();
-        URL xmlPath = null;
-        try {
-            xmlPath = this.getServletContext().getResource(fileName);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+//        URL xmlPath = null;
+//        try {
+//            xmlPath = this.getServletContext().getResource(packageLocation);
+//        } catch (MalformedURLException e) {
+//            e.printStackTrace();
+//        }
+//
+//        List<String> packageNames = XmlScanComponentHelper.getNodeValue(xmlPath);
 
-        List<String> packageNames = XmlScanComponentHelper.getNodeValue(xmlPath);
-        List<String> controllerNames = scanPackages(packageNames);
+        List<String> controllerNames = scanPackages(new ArrayList<>(Arrays.asList(packageLocation)));
+//        List<String> controllerNames = new ArrayList<>(Arrays.asList(packageLocation));
         DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
         this.beanFactory = bf;
         this.beanFactory.setParent(this.parentApplicationContext.getBeanFactory());
@@ -77,16 +81,21 @@ public class AnnotationConfigWebApplicationContext
         return tempControllerNames;
     }
 
-    private List<String> scanPackage(String packageName) {
+    private List<String> scanPackage(String packageName){
         List<String> tempControllerNames = new ArrayList<>();
-        URL url = this.getClass().getClassLoader().getResource("/" + packageName.replaceAll("\\.", "/"));
+        URL url = this.getClass().getClassLoader().getResource(packageName.replaceAll("\\.", "/"));
         File dir = new File(url.getFile());
         for (File file : dir.listFiles()) {
             if (file.isDirectory()) {
                 tempControllerNames.addAll(scanPackage(packageName + "." + file.getName()));
             } else {
                 String controllerName = packageName + "." + file.getName().replace(".class", "");
-                tempControllerNames.add(controllerName);
+                try {
+                    if(Class.forName(controllerName).isAnnotationPresent(LubboController.class))
+                        tempControllerNames.add(controllerName);
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
             }
         }
         return tempControllerNames;

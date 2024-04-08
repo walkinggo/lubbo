@@ -1,9 +1,11 @@
 package org.homelessYSU.test.test;
 
 import org.homelessYSU.beans.factory.annotation.Autowired;
+import org.homelessYSU.beans.factory.annotation.LubboController;
 import org.homelessYSU.test.testClassPathXmlApplicationContext.impl.BaseService;
 import org.homelessYSU.web.RequestMapping;
 
+@LubboController
 public class HelloWorldBean {
 
     @Autowired

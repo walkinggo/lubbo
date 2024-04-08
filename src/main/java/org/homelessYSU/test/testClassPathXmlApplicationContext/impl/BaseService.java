@@ -8,6 +8,7 @@ public class BaseService {
     @Autowired
     private BaseBaseService bbs;
 
+
     public BaseBaseService getBbs() {
         return bbs;
     }

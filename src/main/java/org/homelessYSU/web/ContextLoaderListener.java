@@ -1,4 +1,7 @@
 package org.homelessYSU.web;
+import org.homelessYSU.beans.factory.annotation.LubboComponentScanner;
+import org.homelessYSU.beans.factory.config.ConfigurableListableBeanFactory;
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -26,9 +29,10 @@ public class ContextLoaderListener implements ServletContextListener {
 
     private void initWebApplicationContext(ServletContext servletContext) {
         String sContextLocation = servletContext.getInitParameter(CONFIG_LOCATION_PARAM);
-
-        WebApplicationContext wac = new XmlWebApplicationContext(sContextLocation);
+        String packageLocation = (String) servletContext.getAttribute("packageLocation");
+        WebApplicationContext wac = new XmlWebApplicationContext(sContextLocation,packageLocation);
         wac.setServletContext(servletContext);
+        ConfigurableListableBeanFactory beanFactory = wac.getBeanFactory();
         this.context = wac;
         servletContext.setAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE, this.context);
     }

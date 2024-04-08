@@ -3,6 +3,7 @@ package org.homelessYSU.context;
 import org.homelessYSU.beans.*;
 import org.homelessYSU.beans.factory.AbstractApplicationContext;
 import org.homelessYSU.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor;
+import org.homelessYSU.beans.factory.annotation.LubboComponentScanner;
 import org.homelessYSU.beans.factory.config.BeanFactoryPostProcessor;
 import org.homelessYSU.beans.factory.config.ConfigurableListableBeanFactory;
 import org.homelessYSU.beans.factory.support.DefaultListableBeanFactory;
@@ -23,18 +24,25 @@ public class ClassPathXmlApplicationContext extends AbstractApplicationContext {
     private final List<BeanFactoryPostProcessor> beanFactoryPostProcessors =
             new ArrayList<BeanFactoryPostProcessor>();
 
-    public ClassPathXmlApplicationContext(String fileName) {
-        this(fileName, true);
+
+    public ClassPathXmlApplicationContext(String fileName, String packageLocation) {
+        this(fileName, true,packageLocation);
     }
 
-    public ClassPathXmlApplicationContext(String fileName, boolean isRefresh) {
+    public void loadComponentBean(String packageLocation) {
+        LubboComponentScanner scanner = new LubboComponentScanner(beanFactory);
+        scanner.loadBeanDefinitions(packageLocation);
+    }
+
+    public ClassPathXmlApplicationContext(String fileName, boolean isRefresh, String packageLocation) {
         Resource res = new ClassPathXmlResource(fileName);
         DefaultListableBeanFactory bf = new DefaultListableBeanFactory();
         XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(bf);
         reader.loadBeanDefinitions(res);
 
-        this.beanFactory = bf;
 
+        this.beanFactory = bf;
+        this.loadComponentBean(packageLocation);
         if (isRefresh) {
             try {
                 refresh();

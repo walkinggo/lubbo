@@ -9,8 +9,8 @@ public class XmlWebApplicationContext
         extends ClassPathXmlApplicationContext implements WebApplicationContext{
     private ServletContext servletContext;
 
-    public XmlWebApplicationContext(String fileName) {
-        super(fileName);
+    public XmlWebApplicationContext(String fileName,String packageLocation) {
+        super(fileName,packageLocation);
     }
 
     @Override

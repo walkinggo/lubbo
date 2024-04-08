@@ -2,6 +2,7 @@ package org.homelessYSU.test.test;
 
 import org.homelessYSU.beans.factory.annotation.Autowired;
 import org.homelessYSU.beans.factory.annotation.LubboController;
+import org.homelessYSU.test.testClassPathXmlApplicationContext.impl.AnnoInClass;
 import org.homelessYSU.test.testClassPathXmlApplicationContext.impl.BaseService;
 import org.homelessYSU.web.RequestMapping;
 
@@ -10,6 +11,9 @@ public class HelloWorldBean {
 
     @Autowired
     BaseService ba;
+
+    @Autowired
+    AnnoInClass anno;
 
     @RequestMapping("/test1")
     public String doTest1() {
@@ -29,6 +33,7 @@ public class HelloWorldBean {
     }
     @RequestMapping("/test2")
     public String doTest2() {
+        anno.annoTest();
         return "test 2, hello world!";
     }
     @RequestMapping("/test3")

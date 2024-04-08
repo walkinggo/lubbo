@@ -77,4 +77,11 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
         return result;
     }
 
+    @Override
+    public String getBeanNameByBeanClass(String beanName) {
+        String beanNameByBeanClass = super.getBeanNameByBeanClass(beanName);
+        if(beanNameByBeanClass == null || beanNameByBeanClass.isEmpty())
+            beanNameByBeanClass = this.parentBeanFctory.getBeanNameByBeanClass(beanName);
+        return beanNameByBeanClass;
+    }
 }

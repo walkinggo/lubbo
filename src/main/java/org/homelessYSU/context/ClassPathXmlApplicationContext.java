@@ -98,4 +98,8 @@ public class ClassPathXmlApplicationContext extends AbstractApplicationContext {
     }
 
 
+    @Override
+    public String getBeanNameByBeanClass(String beanName) {
+        return null;
+    }
 }

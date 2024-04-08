@@ -9,7 +9,7 @@ import org.homelessYSU.web.RequestMapping;
 public class HelloWorldBean {
 
     @Autowired
-    BaseService baseservice;
+    BaseService ba;
 
     @RequestMapping("/test1")
     public String doTest1() {
@@ -33,6 +33,6 @@ public class HelloWorldBean {
     }
     @RequestMapping("/test3")
     public String doTest3() {
-        return 5 + " "  + baseservice.getBbs().getAs().getProperty1();
+        return 5 + " "  + ba.getBbs().getAs().getProperty1();
     }
 }

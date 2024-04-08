@@ -20,7 +20,7 @@ public class AutowiredAnnotationBeanPostProcessor implements BeanPostProcessor {
                 boolean isAutowired = field.isAnnotationPresent(Autowired.class);
                 if(isAutowired){
                     String fieldName = field.getName();
-                    Object autowiredObj = this.getBeanFactory().getBean(fieldName);
+                    Object autowiredObj = this.getBeanFactory().getBean(this.getBeanFactory().getBeanNameByBeanClass(field.getType().getName()));
                     try {
                         field.setAccessible(true);
                         field.set(bean, autowiredObj);
@@ -47,6 +47,7 @@ public class AutowiredAnnotationBeanPostProcessor implements BeanPostProcessor {
     public BeanFactory getBeanFactory() {
         return beanFactory;
     }
+
 
     public void setBeanFactory(BeanFactory beanFactory) {
         this.beanFactory = beanFactory;

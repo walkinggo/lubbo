@@ -15,5 +15,5 @@ public interface BeanFactory {
     boolean isSingleton(String name);
     boolean isPrototype(String name);
     Class<?> getType(String name);
-
+    String getBeanNameByBeanClass(String beanName);
 }

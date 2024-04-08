@@ -164,4 +164,8 @@ public class AnnotationConfigWebApplicationContext
         return this.beanFactory;
     }
 
+    @Override
+    public String getBeanNameByBeanClass(String beanName) {
+        return this.parentApplicationContext.getBeanNameByBeanClass(beanName);
+    }
 }

@@ -6,13 +6,13 @@ import org.homelessYSU.beans.factory.annotation.LubboComponent;
 @LubboComponent
 public class BaseBaseService {
     @Autowired
-    private AServiceImpl aservice;
+    private AServiceImpl as;
 
     public AServiceImpl getAs() {
-        return aservice;
+        return as;
     }
     public void setAs(AServiceImpl as) {
-        this.aservice = as;
+        this.as = as;
     }
     public BaseBaseService() {
     }

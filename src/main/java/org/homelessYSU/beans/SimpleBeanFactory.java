@@ -123,6 +123,12 @@ public class SimpleBeanFactory extends DefaultSingletonBeanRegistry implements B
         return this.beanDefinitionMap.get(name).getClass();
     }
 
+    @Override
+    public String getBeanNameByBeanClass(String beanName) {
+        return null;
+    }
+
+
     private Object createBean(BeanDefinition bd) {
         Class<?> clz = null;
         Object obj = doCreateBean(bd);

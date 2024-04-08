@@ -21,9 +21,10 @@ import java.util.concurrent.ConcurrentHashMap;
 
 
 public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry implements ConfigurableBeanFactory,BeanDefinitionRegistry{
-    protected Map<String, BeanDefinition> beanDefinitionMap=new ConcurrentHashMap<>(256);
+    protected Map<String, BeanDefinition> beanDefinitionMap=new ConcurrentHashMap<>(256); // name -> bd
     protected List<String> beanDefinitionNames=new ArrayList<>();
-    private final Map<String, Object> earlySingletonObjects = new HashMap<String, Object>(16);
+    protected Map<String,String> beanNames = new ConcurrentHashMap<>(256); // class -> name
+    private final Map<String, Object> earlySingletonObjects = new HashMap<String, Object>(16);// name -> earlySingletonObjects
 
     public AbstractBeanFactory() {
     }
@@ -38,6 +39,10 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
         }
     }
 
+    public String getBeanNameByBeanClass(String beanName){
+        String s = beanNames.get(beanName);
+        return s;
+    }
     public Object getBean(String beanName) throws BeansException{
         Object singleton = this.getSingleton(beanName);
 
@@ -107,6 +112,7 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
 
     @Override
     public void registerBeanDefinition(String name, BeanDefinition bd) {
+        this.beanNames.put(bd.getClassName(),name);
         this.beanDefinitionMap.put(name,bd);
         this.beanDefinitionNames.add(name);
         if (!bd.isLazyInit()) {

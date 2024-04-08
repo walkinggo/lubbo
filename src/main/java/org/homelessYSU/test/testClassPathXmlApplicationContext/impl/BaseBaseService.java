@@ -1,13 +1,18 @@
 package org.homelessYSU.test.testClassPathXmlApplicationContext.impl;
 
+import org.homelessYSU.beans.factory.annotation.Autowired;
+import org.homelessYSU.beans.factory.annotation.LubboComponent;
+
+@LubboComponent
 public class BaseBaseService {
-    private AServiceImpl as;
+    @Autowired
+    private AServiceImpl aservice;
 
     public AServiceImpl getAs() {
-        return as;
+        return aservice;
     }
     public void setAs(AServiceImpl as) {
-        this.as = as;
+        this.aservice = as;
     }
     public BaseBaseService() {
     }

@@ -1,18 +1,23 @@
 package org.homelessYSU.test.testClassPathXmlApplicationContext.impl;
 
+import org.homelessYSU.beans.factory.annotation.Autowired;
+import org.homelessYSU.beans.factory.annotation.LubboComponent;
+
+@LubboComponent
 public class AServiceImpl {
     private String name;
     private int level;
     private String property1;
     private String property2;
-    private BaseService ref1;
+    @Autowired
+    private BaseService baseservice;
 
     public BaseService getRef1() {
-        return ref1;
+        return baseservice;
     }
 
     public void setRef1(BaseService bs) {
-        this.ref1 = bs;
+        this.baseservice = bs;
     }
 
     public String getProperty1() {
@@ -41,6 +46,6 @@ public class AServiceImpl {
 
     public void sayHello() {
         System.out.print(this.property1 + "," + this.property2);
-        ref1.sayHello();
+        baseservice.sayHello();
     }
 }

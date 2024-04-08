@@ -22,7 +22,6 @@ public class RequestMappingHandlerAdapter implements HandlerAdapter {
         } catch (BeansException e) {
             e.printStackTrace();
         }
-
     }
 
     @Override

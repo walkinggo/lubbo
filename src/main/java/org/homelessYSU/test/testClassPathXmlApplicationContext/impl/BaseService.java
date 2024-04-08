@@ -1,7 +1,9 @@
 package org.homelessYSU.test.testClassPathXmlApplicationContext.impl;
 
 import org.homelessYSU.beans.factory.annotation.Autowired;
+import org.homelessYSU.beans.factory.annotation.LubboComponent;
 
+@LubboComponent
 public class BaseService {
     @Autowired
     private BaseBaseService bbs;

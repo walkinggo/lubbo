@@ -1,6 +1,7 @@
 package org.homelessYSU.web;
 
 import org.homelessYSU.beans.BeansException;
+import org.homelessYSU.test.test.DateInitializer;
 
 
 import java.lang.reflect.Method;
@@ -18,7 +19,7 @@ public class RequestMappingHandlerAdapter implements HandlerAdapter {
     public RequestMappingHandlerAdapter(WebApplicationContext wac) {
         this.wac = wac;
         try {
-            this.webBindingInitializer = (WebBindingInitializer) this.wac.getBean("webBindingInitializer");
+            this.webBindingInitializer = (WebBindingInitializer) this.wac.getBean(DateInitializer.class.getName());
         } catch (BeansException e) {
             e.printStackTrace();
         }

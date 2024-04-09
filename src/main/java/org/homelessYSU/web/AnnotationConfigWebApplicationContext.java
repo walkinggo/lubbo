@@ -11,8 +11,10 @@ import org.homelessYSU.beans.factory.support.DefaultListableBeanFactory;
 
 import javax.servlet.ServletContext;
 import java.io.File;
+import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -84,7 +86,12 @@ public class AnnotationConfigWebApplicationContext
     private List<String> scanPackage(String packageName){
         List<String> tempControllerNames = new ArrayList<>();
         URL url = this.getClass().getClassLoader().getResource(packageName.replaceAll("\\.", "/"));
-        File dir = new File(url.getFile());
+        File dir = null;
+        try {
+            dir = new File(URLDecoder.decode(url.getFile(),"UTF-8"));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
         for (File file : dir.listFiles()) {
             if (file.isDirectory()) {
                 tempControllerNames.addAll(scanPackage(packageName + "." + file.getName()));

@@ -2,7 +2,6 @@ package org.homelessYSU.test.test;
 
 import org.homelessYSU.beans.factory.annotation.Autowired;
 import org.homelessYSU.beans.factory.annotation.LubboController;
-import org.homelessYSU.beans.factory.annotation.RequestBodyHandler;
 import org.homelessYSU.test.testClassPathXmlApplicationContext.impl.*;
 import org.homelessYSU.web.RequestMapping;
 

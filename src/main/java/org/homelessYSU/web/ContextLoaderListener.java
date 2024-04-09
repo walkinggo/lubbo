@@ -32,9 +32,15 @@ public class ContextLoaderListener implements ServletContextListener {
         String packageLocation = (String) servletContext.getAttribute("packageLocation");
         WebApplicationContext wac = new XmlWebApplicationContext(sContextLocation,packageLocation);
         wac.setServletContext(servletContext);
-        ConfigurableListableBeanFactory beanFactory = wac.getBeanFactory();
         this.context = wac;
         servletContext.setAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE, this.context);
+        System.out.println(" _______   __    __  .______   .______     ______   \n" +
+                "|       \\ |  |  |  | |   _  \\  |   _  \\   /  __  \\  \n" +
+                "|  .--.  ||  |  |  | |  |_)  | |  |_)  | |  |  |  | \n" +
+                "|  |  |  ||  |  |  | |   _  <  |   _  <  |  |  |  | \n" +
+                "|  '--'  ||  `--'  | |  |_)  | |  |_)  | |  `--'  | \n" +
+                "|_______/  \\______/  |______/  |______/   \\______/  \n" +
+                "                                                    ");
     }
 
 

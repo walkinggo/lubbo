@@ -51,12 +51,7 @@ public class DispatcherServlet extends HttpServlet {
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
 
-        System.out.println(".____     ____ _______________________ ________   \n" +
-                "|    |   |    |   \\______   \\______   \\\\_____  \\  \n" +
-                "|    |   |    |   /|    |  _/|    |  _/ /   |   \\ \n" +
-                "|    |___|    |  / |    |   \\|    |   \\/    |    \\\n" +
-                "|_______ \\______/  |______  /|______  /\\_______  /\n" +
-                "        \\/                \\/        \\/         \\/ ");
+
 
         this.parentApplicationContext =
                 (WebApplicationContext) this.getServletContext().getAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE);

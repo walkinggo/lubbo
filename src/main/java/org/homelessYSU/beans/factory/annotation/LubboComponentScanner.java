@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLDecoder;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -44,7 +45,7 @@ public class LubboComponentScanner {
         URL url = this.getClass().getClassLoader().getResource(packageName.replaceAll("\\.", "/"));
         File dir = null;
         try {
-            dir = new File(URLDecoder.decode(url.getFile(),"UTF-8"));
+            dir = new File(URLDecoder.decode(url.getFile(), Charset.defaultCharset().toString()));
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }

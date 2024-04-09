@@ -14,15 +14,15 @@ import javax.servlet.http.HttpServletResponse;
 
 public class RequestMappingHandlerAdapter implements HandlerAdapter {
     WebApplicationContext wac = null;
-    private WebBindingInitializer webBindingInitializer = null;
+//    private WebBindingInitializer webBindingInitializer = null;
 
     public RequestMappingHandlerAdapter(WebApplicationContext wac) {
         this.wac = wac;
-        try {
-            this.webBindingInitializer = (WebBindingInitializer) this.wac.getBean(DateInitializer.class.getName());
-        } catch (BeansException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            this.webBindingInitializer = (WebBindingInitializer) this.wac.getBean(DateInitializer.class.getName());
+//        } catch (BeansException e) {
+//            e.printStackTrace();
+//        }
     }
 
     @Override
@@ -49,7 +49,7 @@ public class RequestMappingHandlerAdapter implements HandlerAdapter {
                                        HttpServletResponse response, HandlerMethod handlerMethod) throws Exception {
 
 
-        WebDataBinderFactory binderFactory = new WebDataBinderFactory();
+//        WebDataBinderFactory binderFactory = new WebDataBinderFactory();
 
         Parameter[] methodParameters = handlerMethod.getMethod().getParameters();
         Object[] methodParamObjs = new Object[methodParameters.length];
@@ -57,9 +57,9 @@ public class RequestMappingHandlerAdapter implements HandlerAdapter {
         int i = 0;
         for (Parameter methodParameter : methodParameters) {
             Object methodParamObj = methodParameter.getType().newInstance();
-            WebDataBinder wdb = binderFactory.createBinder(request, methodParamObj, methodParameter.getName());
-            webBindingInitializer.initBinder(wdb);
-            wdb.bind(request);
+//            WebDataBinder wdb = binderFactory.createBinder(request, methodParamObj, methodParameter.getName());
+//            webBindingInitializer.initBinder(wdb);
+//            wdb.bind(request);
             methodParamObjs[i] = methodParamObj;
             i++;
         }
@@ -93,13 +93,6 @@ public class RequestMappingHandlerAdapter implements HandlerAdapter {
 
     }
 
-    public WebBindingInitializer getWebBindingInitializer() {
-        return webBindingInitializer;
-    }
-
-    public void setWebBindingInitializer(WebBindingInitializer webBindingInitializer) {
-        this.webBindingInitializer = webBindingInitializer;
-    }
 
 
 }

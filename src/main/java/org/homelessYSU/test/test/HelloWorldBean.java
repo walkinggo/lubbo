@@ -3,10 +3,7 @@ package org.homelessYSU.test.test;
 import org.homelessYSU.beans.factory.annotation.Autowired;
 import org.homelessYSU.beans.factory.annotation.LubboController;
 import org.homelessYSU.beans.factory.annotation.RequestBodyHandler;
-import org.homelessYSU.test.testClassPathXmlApplicationContext.impl.AServiceImpl;
-import org.homelessYSU.test.testClassPathXmlApplicationContext.impl.AnnoInClass;
-import org.homelessYSU.test.testClassPathXmlApplicationContext.impl.BaseService;
-import org.homelessYSU.test.testClassPathXmlApplicationContext.impl.CheckInClass;
+import org.homelessYSU.test.testClassPathXmlApplicationContext.impl.*;
 import org.homelessYSU.web.RequestMapping;
 
 @LubboController(ControllerUrl = "/helloworld")
@@ -30,7 +27,12 @@ public class HelloWorldBean {
         return a.toString() + b.toString();
     }
     @RequestMapping("/test4")
-    public String doTest3(CheckInClass a){
+    public String doTest4(CheckInClass a){
+        return a.toString();
+    }
+
+    @RequestMapping("/test5")
+    public String doTest5(SStestClassB a){
         return a.toString();
     }
 }

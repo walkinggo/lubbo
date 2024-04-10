@@ -5,7 +5,7 @@ import org.homelessYSU.beans.factory.annotation.LubboController;
 import org.homelessYSU.beans.factory.annotation.LubboRequestBody;
 import org.homelessYSU.beans.factory.annotation.LubboRequestParam;
 import org.homelessYSU.test.testClassPathXmlApplicationContext.impl.*;
-import org.homelessYSU.web.RequestMapping;
+import org.homelessYSU.web.annotation.RequestMapping;
 
 @LubboController(ControllerUrl = "/helloworld")
 public class HelloWorldBean {

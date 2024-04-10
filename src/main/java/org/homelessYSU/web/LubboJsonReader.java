@@ -28,21 +28,17 @@ public class LubboJsonReader {
     public static Object[] getRequestBodyObjs(String json, HandlerMethod handlerMethod) throws JsonProcessingException, IllegalAccessException, InstantiationException {
         Parameter[] methodParameters = handlerMethod.getMethod().getParameters();
         Object[] parObjs = new Object[methodParameters.length];
-        for (int i = 0; i < parObjs.length; i++) {
-            parObjs[i] = methodParameters[i].getType().newInstance();
-        }
         if (parObjs.length == 1) {
             if (methodParameters[0].isAnnotationPresent(LubboRequestBody.class))
-                parObjs[0] = om.readValue(json, parObjs[0].getClass());
+                parObjs[0] = om.readValue(json, methodParameters[0].getType());
         } else {
             JsonNode jsonNode = om.readTree(json);
             int i = 0;
             for (int j = 0; j < parObjs.length; j++) {
                 if (methodParameters[j].isAnnotationPresent(LubboRequestBody.class))
-                    parObjs[j] = om.treeToValue(jsonNode.get(i++), parObjs[j].getClass());
+                    parObjs[j] = om.treeToValue(jsonNode.get(i++), methodParameters[j].getType());
             }
         }
         return parObjs;
     }
-
 }

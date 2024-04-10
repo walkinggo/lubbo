@@ -33,14 +33,11 @@ public class RequestMappingHandlerAdapter implements HandlerAdapter {
 
     protected void invokeHandlerMethod(HttpServletRequest request,
                                        HttpServletResponse response, HandlerMethod handlerMethod) throws Exception {
-
-        Parameter[] methodParameters = handlerMethod.getMethod().getParameters();
         String json = LubboJsonReader.readJson(request);
-        Object[] parms = LubboJsonReader.getParObjs(json, methodParameters);
+        Object[] parms = LubboJsonReader.getRequestBodyObjs(json, handlerMethod);
         Method invocableMethod = handlerMethod.getMethod();
         Object returnobj = invocableMethod.invoke(handlerMethod.getBean(), parms);
         response.getWriter().append(returnobj.toString());
-
     }
 
 }

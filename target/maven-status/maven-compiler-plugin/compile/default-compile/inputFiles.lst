@@ -4,6 +4,7 @@ D:\lubbo\src\main\java\org\homelessYSU\beans\ArgumentValue.java
 D:\lubbo\src\main\java\org\homelessYSU\beans\PropertyValues.java
 D:\lubbo\src\main\java\org\homelessYSU\web\XmlScanComponentHelper.java
 D:\lubbo\src\main\java\org\homelessYSU\beans\NoSuchBeanDefinitionException.java
+D:\lubbo\src\main\java\org\homelessYSU\test\testClassPathXmlApplicationContext\impl\CheckInClass.java
 D:\lubbo\src\main\java\org\homelessYSU\beans\AbstractPropertyAccessor.java
 D:\lubbo\src\main\java\org\homelessYSU\beans\ApplicationEventPublisher.java
 D:\lubbo\src\main\java\org\homelessYSU\web\HandlerAdapter.java
@@ -11,6 +12,7 @@ D:\lubbo\src\main\java\org\homelessYSU\beans\factory\support\AbstractBeanFactory
 D:\lubbo\src\main\java\org\homelessYSU\web\MappingRegistry.java
 D:\lubbo\src\main\java\org\homelessYSU\Application.java
 D:\lubbo\src\main\java\org\homelessYSU\beans\factory\config\ConstructorArgumentValue.java
+D:\lubbo\src\main\java\org\homelessYSU\web\LubboJsonReader.java
 D:\lubbo\src\main\java\org\homelessYSU\beans\factory\config\ConstructorArgumentValues.java
 D:\lubbo\src\main\java\org\homelessYSU\beans\factory\annotation\LubboComponent.java
 D:\lubbo\src\main\java\org\homelessYSU\beans\factory\annotation\LubboController.java
@@ -28,6 +30,7 @@ D:\lubbo\src\main\java\org\homelessYSU\beans\factory\config\ConfigurableBeanFact
 D:\lubbo\src\main\java\org\homelessYSU\web\MappingValue.java
 D:\lubbo\src\main\java\org\homelessYSU\beans\StringEditor.java
 D:\lubbo\src\main\java\org\homelessYSU\web\ModelAndView.java
+D:\lubbo\src\main\java\org\homelessYSU\test\testClassPathXmlApplicationContext\impl\SStestClassB.java
 D:\lubbo\src\main\java\org\homelessYSU\beans\factory\ApplicationContext.java
 D:\lubbo\src\main\java\org\homelessYSU\web\WebApplicationContext.java
 D:\lubbo\src\main\java\org\homelessYSU\beans\PropertyValue.java
@@ -47,6 +50,7 @@ D:\lubbo\src\main\java\org\homelessYSU\beans\ContextRefreshEvent.java
 D:\lubbo\src\main\java\org\homelessYSU\web\WebDataBinder.java
 D:\lubbo\src\main\java\org\homelessYSU\beans\CustomNumberEditor.java
 D:\lubbo\src\main\java\org\homelessYSU\test\test\DateInitializer.java
+D:\lubbo\src\main\java\org\homelessYSU\beans\factory\annotation\LubboRequestReader.java
 D:\lubbo\src\main\java\org\homelessYSU\beans\factory\AbstractApplicationContext.java
 D:\lubbo\src\main\java\org\homelessYSU\context\ClassPathXmlApplicationContext.java
 D:\lubbo\src\main\java\org\homelessYSU\test\testClassPathXmlApplicationContext\impl\BaseBaseService.java
@@ -73,6 +77,7 @@ D:\lubbo\src\main\java\org\homelessYSU\web\Resource.java
 D:\lubbo\src\main\java\org\homelessYSU\web\WebDataBinderFactory.java
 D:\lubbo\src\main\java\org\homelessYSU\beans\factory\config\AbstractAutowireCapableBeanFactory.java
 D:\lubbo\src\main\java\org\homelessYSU\web\RequestMappingHandlerAdapter.java
+D:\lubbo\src\main\java\org\homelessYSU\beans\factory\annotation\LubboRequestBody.java
 D:\lubbo\src\main\java\org\homelessYSU\test\testClassPathXmlApplicationContext\impl\AServiceImpl.java
 D:\lubbo\src\main\java\org\homelessYSU\util\ClassUtils.java
 D:\lubbo\src\main\java\org\homelessYSU\web\ClassPathXmlResource.java
@@ -84,6 +89,8 @@ D:\lubbo\src\main\java\org\homelessYSU\beans\ApplicationListener.java
 D:\lubbo\src\main\java\org\homelessYSU\beans\factory\config\AutowireCapableBeanFactory.java
 D:\lubbo\src\main\java\org\homelessYSU\web\BeanWrapperImpl.java
 D:\lubbo\src\main\java\org\homelessYSU\context\ClassPathXmlResource.java
+D:\lubbo\src\main\java\org\homelessYSU\test\testClassPathXmlApplicationContext\impl\SStestClassA.java
 D:\lubbo\src\main\java\org\homelessYSU\beans\factory\support\BeanDefinitionRegistry.java
 D:\lubbo\src\main\java\org\homelessYSU\beans\factory\xml\XmlBeanDefinitionReader.java
+D:\lubbo\src\main\java\org\homelessYSU\beans\factory\annotation\LubboRequestParam.java
 D:\lubbo\src\main\java\org\homelessYSU\web\ContextLoaderListener.java

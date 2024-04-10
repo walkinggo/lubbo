@@ -9,15 +9,9 @@
         <module name="lubbo" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="lubbo-bean" target="1.8" />
-      <module name="lubbo-context" target="1.8" />
-      <module name="lubbo-core" target="1.8" />
-      <module name="lubbo-demo" target="1.8" />
-      <module name="lubbo-mvc" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_STRING" value="-parameters" />
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="lubbo" options="-parameters" />
     </option>

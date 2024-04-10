@@ -34,13 +34,12 @@ public class ContextLoaderListener implements ServletContextListener {
         wac.setServletContext(servletContext);
         this.context = wac;
         servletContext.setAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE, this.context);
-        System.out.println(" _______   __    __  .______   .______     ______   \n" +
-                "|       \\ |  |  |  | |   _  \\  |   _  \\   /  __  \\  \n" +
-                "|  .--.  ||  |  |  | |  |_)  | |  |_)  | |  |  |  | \n" +
-                "|  |  |  ||  |  |  | |   _  <  |   _  <  |  |  |  | \n" +
-                "|  '--'  ||  `--'  | |  |_)  | |  |_)  | |  `--'  | \n" +
-                "|_______/  \\______/  |______/  |______/   \\______/  \n" +
-                "                                                    ");
+        System.out.println("  _    _   _ ____  ____   ___  \n" +
+                " | |  | | | | __ )| __ ) / _ \\ \n" +
+                " | |  | | | |  _ \\|  _ \\| | | |\n" +
+                " | |__| |_| | |_) | |_) | |_| |\n" +
+                " |_____\\___/|____/|____/ \\___/ \n" +
+                "                               ");
     }
 
 

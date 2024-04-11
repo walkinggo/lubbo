@@ -130,8 +130,8 @@ public abstract class AbstractApplicationContext implements ApplicationContext{
     }
 
     @Override
-    public void addBeanPostProcessor(BeanPostProcessor beanPostProcessor) {
-        getBeanFactory().addBeanPostProcessor(beanPostProcessor);
+    public void addBeforeInitializaBeanPostProcessor(BeanPostProcessor beanPostProcessor) {
+        getBeanFactory().addBeforeInitializaBeanPostProcessor(beanPostProcessor);
 
     }
 

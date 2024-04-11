@@ -14,9 +14,13 @@ public abstract class AbstractAutowireCapableBeanFactory
     private final List<BeanPostProcessor> BeforeInitializationbeanPostProcessors = new ArrayList<BeanPostProcessor>();
     private final List<BeanPostProcessor> AfterInitializationbeanPostProcessors = new ArrayList<BeanPostProcessor>();
 
-    public void addBeanPostProcessor(BeanPostProcessor beanPostProcessor) {
+    public void addBeforeInitializaBeanPostProcessor(BeanPostProcessor beanPostProcessor) {
         this.BeforeInitializationbeanPostProcessors.remove(beanPostProcessor);
         this.BeforeInitializationbeanPostProcessors.add(beanPostProcessor);
+    }
+    public void addAfterInitializaBeanPostProcessor(BeanPostProcessor beanPostProcessor) {
+        this.AfterInitializationbeanPostProcessors.remove(beanPostProcessor);
+        this.AfterInitializationbeanPostProcessors.add(beanPostProcessor);
     }
     public int getBeanPostProcessorCount() {
         return this.BeforeInitializationbeanPostProcessors.size();

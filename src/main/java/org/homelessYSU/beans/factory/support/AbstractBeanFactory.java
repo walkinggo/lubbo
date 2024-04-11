@@ -324,7 +324,7 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
             throws BeansException;
 
     @Override
-    public void addBeanPostProcessor(BeanPostProcessor beanPostProcessor) {
+    public void addBeforeInitializaBeanPostProcessor(BeanPostProcessor beanPostProcessor) {
 
     }
 

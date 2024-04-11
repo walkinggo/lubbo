@@ -12,7 +12,6 @@ import org.homelessYSU.beans.factory.support.DefaultListableBeanFactory;
 import javax.servlet.ServletContext;
 import java.io.File;
 import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLDecoder;
 import java.util.ArrayList;
@@ -152,7 +151,7 @@ public class AnnotationConfigWebApplicationContext
 
     @Override
     public void registerBeanPostProcessors(ConfigurableListableBeanFactory bf) {
-        this.beanFactory.addBeanPostProcessor(new AutowiredAnnotationBeanPostProcessor());
+        this.beanFactory.addBeforeInitializaBeanPostProcessor(new AutowiredAnnotationBeanPostProcessor());
     }
 
     @Override

@@ -10,8 +10,8 @@ import org.homelessYSU.beans.factory.config.ConstructorArgumentValues;
  * @time: 2024/4/4 14:41
  */
 public class BeanDefinition {
-    String SCOPE_SINGLETON = "singleton";
-    String SCOPE_PROTOTYPE = "prototype";
+    public static String SCOPE_SINGLETON = "singleton";
+    public static String SCOPE_PROTOTYPE = "prototype";
 
     private boolean lazyInit = true;
     private String[] dependsOn;

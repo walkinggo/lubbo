@@ -21,6 +21,8 @@ public class AutowiredAnnotationBeanPostProcessor implements BeanPostProcessor {
                 if(isAutowired){
                     String fieldName = field.getName();
                     Object autowiredObj = this.getBeanFactory().getBean(this.getBeanFactory().getBeanNameByBeanClass(field.getType().getName()));
+                    if(autowiredObj == null)
+                        autowiredObj = this.getBeanFactory().getBean(this.getBeanFactory().getBeanNameByBeanClass(field.getType().getInterfaces()[0].getName()));
                     try {
                         field.setAccessible(true);
                         field.set(bean, autowiredObj);

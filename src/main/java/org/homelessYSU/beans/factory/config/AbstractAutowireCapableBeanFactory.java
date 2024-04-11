@@ -11,24 +11,28 @@ import java.util.List;
 
 public abstract class AbstractAutowireCapableBeanFactory
         extends AbstractBeanFactory implements AutowireCapableBeanFactory{
-    private final List<BeanPostProcessor> beanPostProcessors = new ArrayList<BeanPostProcessor>();
+    private final List<BeanPostProcessor> BeforeInitializationbeanPostProcessors = new ArrayList<BeanPostProcessor>();
+    private final List<BeanPostProcessor> AfterInitializationbeanPostProcessors = new ArrayList<BeanPostProcessor>();
 
     public void addBeanPostProcessor(BeanPostProcessor beanPostProcessor) {
-        this.beanPostProcessors.remove(beanPostProcessor);
-        this.beanPostProcessors.add(beanPostProcessor);
+        this.BeforeInitializationbeanPostProcessors.remove(beanPostProcessor);
+        this.BeforeInitializationbeanPostProcessors.add(beanPostProcessor);
     }
     public int getBeanPostProcessorCount() {
-        return this.beanPostProcessors.size();
+        return this.BeforeInitializationbeanPostProcessors.size();
     }
-    public List<BeanPostProcessor> getBeanPostProcessors() {
-        return this.beanPostProcessors;
+    public List<BeanPostProcessor> getBeforeInitializationbeanPostProcessors() {
+        return this.BeforeInitializationbeanPostProcessors;
+    }
+    public List<BeanPostProcessor> getAfterInitializationbeanPostProcessors() {
+        return this.AfterInitializationbeanPostProcessors;
     }
 
     public Object applyBeanPostProcessorsBeforeInitialization(Object existingBean, String beanName)
             throws BeansException {
 
         Object result = existingBean;
-        for (BeanPostProcessor beanProcessor : getBeanPostProcessors()) {
+        for (BeanPostProcessor beanProcessor : getBeforeInitializationbeanPostProcessors()) {
             beanProcessor.setBeanFactory(this);
             result = beanProcessor.postProcessBeforeInitialization(result, beanName);
             if (result == null) {
@@ -42,7 +46,7 @@ public abstract class AbstractAutowireCapableBeanFactory
             throws BeansException {
 
         Object result = existingBean;
-        for (BeanPostProcessor beanProcessor : getBeanPostProcessors()) {
+        for (BeanPostProcessor beanProcessor : getAfterInitializationbeanPostProcessors()) {
             result = beanProcessor.postProcessAfterInitialization(result, beanName);
             if (result == null) {
                 return result;

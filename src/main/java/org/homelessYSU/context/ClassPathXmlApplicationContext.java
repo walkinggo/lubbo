@@ -2,6 +2,7 @@ package org.homelessYSU.context;
 
 import org.homelessYSU.beans.*;
 import org.homelessYSU.beans.factory.AbstractApplicationContext;
+import org.homelessYSU.beans.factory.annotation.AOP.LubboAOPScanner;
 import org.homelessYSU.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor;
 import org.homelessYSU.beans.factory.annotation.LubboComponentScanner;
 import org.homelessYSU.beans.factory.config.BeanFactoryPostProcessor;
@@ -11,6 +12,7 @@ import org.homelessYSU.beans.factory.xml.XmlBeanDefinitionReader;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * @param
@@ -21,6 +23,7 @@ import java.util.List;
  */
 public class ClassPathXmlApplicationContext extends AbstractApplicationContext {
     DefaultListableBeanFactory beanFactory;
+
     private final List<BeanFactoryPostProcessor> beanFactoryPostProcessors =
             new ArrayList<BeanFactoryPostProcessor>();
 
@@ -33,6 +36,7 @@ public class ClassPathXmlApplicationContext extends AbstractApplicationContext {
         LubboComponentScanner scanner = new LubboComponentScanner(beanFactory);
         scanner.loadBeanDefinitions(packageLocation);
     }
+
 
     public ClassPathXmlApplicationContext(String fileName, boolean isRefresh, String packageLocation) {
         DefaultListableBeanFactory bf = new DefaultListableBeanFactory();

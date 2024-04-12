@@ -1,4 +1,5 @@
 package org.homelessYSU.web;
+import org.homelessYSU.beans.factory.annotation.AOP.LubboAOPScanner;
 import org.homelessYSU.beans.factory.annotation.LubboComponentScanner;
 import org.homelessYSU.beans.factory.config.ConfigurableListableBeanFactory;
 
@@ -6,6 +7,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
+import java.util.Map;
 
 public class ContextLoaderListener implements ServletContextListener {
     public static final String CONFIG_LOCATION_PARAM = "contextConfigLocation";
@@ -34,6 +36,10 @@ public class ContextLoaderListener implements ServletContextListener {
         wac.setServletContext(servletContext);
         this.context = wac;
         servletContext.setAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE, this.context);
+        LubboAOPScanner scanner = new LubboAOPScanner();
+        Map map = scanner.loadBeanDefinitions(packageLocation);
+        servletContext.setAttribute(LubboAOPScanner.AOP_ATTRIBUTE,map);
+
         System.out.println("  _    _   _ ____  ____   ___  \n" +
                 " | |  | | | | __ )| __ ) / _ \\ \n" +
                 " | |  | | | |  _ \\|  _ \\| | | |\n" +

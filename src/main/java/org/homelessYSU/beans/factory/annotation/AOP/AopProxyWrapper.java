@@ -1,65 +1,41 @@
 package org.homelessYSU.beans.factory.annotation.AOP;
 
-import net.sf.cglib.proxy.Enhancer;
-import net.sf.cglib.proxy.MethodInterceptor;
-import net.sf.cglib.proxy.MethodProxy;
-
 import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
 
-public class AopProxyWrapper extends Enhancer {
+public class AopProxyWrapper{
 
-    private Class<?> Superclass;
-    private ChainedInterceptor chainedInterceptor;
+    private Method methodBeProxy;
+    private ChainedInterceptor befchainedInterceptor;
+    private ChainedInterceptor aftchainedInterceptor;
 
-    public AopProxyWrapper(Class<?> superclass) {
-        setSuperClass(superclass);
-        this.chainedInterceptor = new ChainedInterceptor();
-        super.setCallback(chainedInterceptor);
+    public AopProxyWrapper(Method methodBeProxy) {
+        setSuperClass(methodBeProxy);
+        this.befchainedInterceptor = new ChainedInterceptor();
+        this.aftchainedInterceptor = new ChainedInterceptor();
     }
 
-    public void setSuperClass(Class<?> superClass) {
-        super.setSuperclass(superClass);
-        this.Superclass = superClass;
+    public void setSuperClass(Method superClass) {
+        this.methodBeProxy = superClass;
     }
 
-    public Class<?> getSuperclass() {
-        return Superclass;
+    public Method getMethodBeProxy() {
+        return methodBeProxy;
     }
 
-    public void addProxyBef(Object proxyObj, Method proxyMethod,Object[] proxyParameters,Method methodP){
-        getChainedInterceptor().addInterceptor(new MethodInterceptor() {
-            @Override
-            public Object intercept(Object o, Method method, Object[] objects, MethodProxy proxy) throws Throwable {
-                if(method.getName().equals(methodP)){
-                    proxyMethod.invoke(proxyObj,proxyParameters);
-                }
-                return proxy.invokeSuper(o,objects);
-            }
-        });
+    public void addProxyBef(Object proxyObj, Method proxyMethod, Parameter[] proxyParameters){
+        this.befchainedInterceptor.addInterceptor(new AopMethodInvoker(proxyMethod,proxyObj,proxyParameters));
     }
 
-    public void addProxyAft(Object proxyObj, Method proxyMethod,Object[] proxyParameters,Method methodP){
-        getChainedInterceptor().addInterceptor(new MethodInterceptor() {
-            @Override
-            public Object intercept(Object o, Method method, Object[] objects, MethodProxy proxy) throws Throwable {
-
-                Object aSuper = proxy.invokeSuper(o, objects);
-                if(method.getName().equals(methodP)){
-                    proxyMethod.invoke(proxyObj,proxyParameters);
-                }
-                return aSuper;
-            }
-        });
+    public void addProxyAft(Object proxyObj, Method proxyMethod,Parameter[] proxyParameters,Method methodP){
+        this.aftchainedInterceptor.addInterceptor(new AopMethodInvoker(proxyMethod,proxyObj,proxyParameters));
     }
 
-
-    public Object create() {
-        super.setCallback(this.chainedInterceptor);
-        return super.create();
+    public ChainedInterceptor getBefchainedInterceptor() {
+        return befchainedInterceptor;
     }
 
-
-    public ChainedInterceptor getChainedInterceptor() {
-        return this.chainedInterceptor;
+    public ChainedInterceptor getAftchainedInterceptor() {
+        return aftchainedInterceptor;
     }
 }

@@ -1,6 +1,8 @@
 package org.homelessYSU.web.servlet;
 
 import org.homelessYSU.beans.BeansException;
+import org.homelessYSU.beans.factory.annotation.AOP.AopProxyWrapper;
+import org.homelessYSU.beans.factory.annotation.AOP.LubboAOPScanner;
 import org.homelessYSU.web.*;
 
 import java.io.File;
@@ -39,6 +41,7 @@ public class DispatcherServlet extends HttpServlet {
     private Map<String,Object> controllerObjs = new HashMap<>();
     private List<String> controllerNames = new ArrayList<>();
     private Map<String,Class<?>> controllerClasses = new HashMap<>();
+    private Map<Method, AopProxyWrapper> methodAopProxyWrapperMap = new HashMap<>();
 
     private HandlerMapping handlerMapping;
     private HandlerAdapter handlerAdapter;
@@ -50,7 +53,7 @@ public class DispatcherServlet extends HttpServlet {
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-
+        this.methodAopProxyWrapperMap = (Map<Method, AopProxyWrapper>) this.getServletContext().getAttribute(LubboAOPScanner.AOP_ATTRIBUTE);
 
 
         this.parentApplicationContext =
@@ -130,9 +133,28 @@ public class DispatcherServlet extends HttpServlet {
         }
 
         HandlerAdapter ha = this.handlerAdapter;
-
+        postprocessBeforeService(handlerMethod.getMethod());
         ha.handle(processedRequest, response, handlerMethod);
+        postprocessAfterService(handlerMethod.getMethod());
     }
 
-
+    protected void postprocessBeforeService(Method method){
+        if(methodAopProxyWrapperMap.containsKey(method)){
+            try {
+                methodAopProxyWrapperMap.get(method).getBefchainedInterceptor().intercept();
+            } catch (Throwable throwable) {
+                throwable.printStackTrace();
+            }
+        }
+    }
+    protected void postprocessAfterService(Method method){
+        if(methodAopProxyWrapperMap.containsKey(method)){
+            try {
+                methodAopProxyWrapperMap.get(method).getAftchainedInterceptor().intercept();
+            }
+            catch (Throwable throwable){
+                throwable.printStackTrace();
+            }
+        }
+    }
 }

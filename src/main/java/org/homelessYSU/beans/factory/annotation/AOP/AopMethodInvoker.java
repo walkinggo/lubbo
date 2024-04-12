@@ -43,4 +43,10 @@ public class AopMethodInvoker {
         }
         return null;
     }
+
+    public AopMethodInvoker(Method method, Object object, Parameter[] parameters) {
+        this.method = method;
+        this.object = object;
+        this.parameters = parameters;
+    }
 }

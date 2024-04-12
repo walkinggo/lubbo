@@ -16,7 +16,7 @@ import java.util.Map;
 
 public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFactory
         implements ConfigurableListableBeanFactory {
-    ConfigurableListableBeanFactory parentBeanFctory;
+    ConfigurableListableBeanFactory parentBeanFactory;
 
     @Override
     public int getBeanDefinitionCount() {
@@ -64,16 +64,16 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
     }
 
     public void setParent(ConfigurableListableBeanFactory beanFactory) {
-        this.parentBeanFctory = beanFactory;
+        this.parentBeanFactory = beanFactory;
     }
 
     @Override
     public Object getBean(String beanName) throws BeansException {
         Object result = super.getBean(beanName);
-        if(result == null && this.parentBeanFctory == null)
+        if(result == null && this.parentBeanFactory == null)
             throw new BeansException("bean:" + beanName + "不存在");
         if (result == null) {
-            result = this.parentBeanFctory.getBean(beanName);
+            result = this.parentBeanFactory.getBean(beanName);
         }
 
         return result;
@@ -83,7 +83,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
     public String getBeanNameByBeanClass(String beanName) {
         String beanNameByBeanClass = super.getBeanNameByBeanClass(beanName);
         if(beanNameByBeanClass == null || beanNameByBeanClass.isEmpty())
-            beanNameByBeanClass = this.parentBeanFctory.getBeanNameByBeanClass(beanName);
+            beanNameByBeanClass = this.parentBeanFactory.getBeanNameByBeanClass(beanName);
         return beanNameByBeanClass;
     }
 }

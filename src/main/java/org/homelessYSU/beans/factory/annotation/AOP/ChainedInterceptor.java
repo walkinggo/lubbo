@@ -7,17 +7,17 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChainedInterceptor implements MethodInterceptor {
-    private List<MethodInterceptor> interceptors = new ArrayList<>();
-    @Override
-    public Object intercept(Object o, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable {
+public class ChainedInterceptor {
+    private List<AopMethodInvoker> interceptors = new ArrayList<>();
+
+    public Object intercept() throws Throwable {
         Object result = null;
-        for (MethodInterceptor interceptor : interceptors) {
-            result = interceptor.intercept(o,method,objects,methodProxy);
+        for (AopMethodInvoker interceptor : interceptors) {
+            result = interceptor.Invoker();
         }
         return null;
     }
-    public void addInterceptor(MethodInterceptor interceptor) {
+    public void addInterceptor(AopMethodInvoker interceptor) {
         interceptors.add(interceptor);
     }
 }

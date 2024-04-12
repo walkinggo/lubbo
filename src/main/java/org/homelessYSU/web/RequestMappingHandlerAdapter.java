@@ -40,7 +40,11 @@ public class RequestMappingHandlerAdapter implements HandlerAdapter {
         LubboJsonReader.getRequestBodyObjs(parms, json, handlerMethod);
         LubboRequestReader.readRequestParamObj(parms, handlerMethod, request);
         Method invocableMethod = handlerMethod.getMethod();
-        response.getWriter().append(new ObjectMapper().writeValueAsString(invocableMethod.invoke(handlerMethod.getBean(), parms)));
+
+
+        String s = new ObjectMapper().writeValueAsString(invocableMethod.invoke(handlerMethod.getBean(), parms));
+
+        response.getWriter().append(s);
     }
 
 }

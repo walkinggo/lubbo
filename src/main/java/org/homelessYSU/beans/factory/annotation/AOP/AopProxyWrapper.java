@@ -27,7 +27,7 @@ public class AopProxyWrapper{
         this.befchainedInterceptor.addInterceptor(new AopMethodInvoker(proxyMethod,proxyObj,proxyParameters));
     }
 
-    public void addProxyAft(Object proxyObj, Method proxyMethod,Parameter[] proxyParameters,Method methodP){
+    public void addProxyAft(Object proxyObj, Method proxyMethod,Parameter[] proxyParameters){
         this.aftchainedInterceptor.addInterceptor(new AopMethodInvoker(proxyMethod,proxyObj,proxyParameters));
     }
 

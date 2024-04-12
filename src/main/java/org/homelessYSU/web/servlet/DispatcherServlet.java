@@ -41,7 +41,7 @@ public class DispatcherServlet extends HttpServlet {
     private Map<String,Object> controllerObjs = new HashMap<>();
     private List<String> controllerNames = new ArrayList<>();
     private Map<String,Class<?>> controllerClasses = new HashMap<>();
-    private Map<Method, AopProxyWrapper> methodAopProxyWrapperMap = new HashMap<>();
+    private Map<String, AopProxyWrapper> methodAopProxyWrapperMap = new HashMap<>();
 
     private HandlerMapping handlerMapping;
     private HandlerAdapter handlerAdapter;
@@ -53,7 +53,7 @@ public class DispatcherServlet extends HttpServlet {
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-        this.methodAopProxyWrapperMap = (Map<Method, AopProxyWrapper>) this.getServletContext().getAttribute(LubboAOPScanner.AOP_ATTRIBUTE);
+        this.methodAopProxyWrapperMap = (Map<String, AopProxyWrapper>) this.getServletContext().getAttribute(LubboAOPScanner.AOP_ATTRIBUTE);
 
 
         this.parentApplicationContext =
@@ -139,18 +139,18 @@ public class DispatcherServlet extends HttpServlet {
     }
 
     protected void postprocessBeforeService(Method method){
-        if(methodAopProxyWrapperMap.containsKey(method)){
+        if(methodAopProxyWrapperMap.containsKey(LubboAOPScanner.getAopUrl(method.getName(),method.getDeclaringClass().getName()))){
             try {
-                methodAopProxyWrapperMap.get(method).getBefchainedInterceptor().intercept();
+                methodAopProxyWrapperMap.get(LubboAOPScanner.getAopUrl(method.getName(),method.getDeclaringClass().getName())).getBefchainedInterceptor().intercept();
             } catch (Throwable throwable) {
                 throwable.printStackTrace();
             }
         }
     }
     protected void postprocessAfterService(Method method){
-        if(methodAopProxyWrapperMap.containsKey(method)){
+        if(methodAopProxyWrapperMap.containsKey(LubboAOPScanner.getAopUrl(method.getName(),method.getDeclaringClass().getName()))){
             try {
-                methodAopProxyWrapperMap.get(method).getAftchainedInterceptor().intercept();
+                methodAopProxyWrapperMap.get(LubboAOPScanner.getAopUrl(method.getName(),method.getDeclaringClass().getName())).getAftchainedInterceptor().intercept();
             }
             catch (Throwable throwable){
                 throwable.printStackTrace();

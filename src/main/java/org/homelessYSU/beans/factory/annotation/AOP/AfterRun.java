@@ -10,4 +10,5 @@ import java.lang.reflect.Method;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface AfterRun {
     String method();
+    String className();
 }

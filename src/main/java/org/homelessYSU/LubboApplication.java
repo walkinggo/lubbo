@@ -4,6 +4,7 @@ import org.apache.catalina.Context;
 import org.apache.catalina.LifecycleException;
 import org.apache.catalina.connector.Connector;
 import org.apache.catalina.startup.Tomcat;
+import org.homelessYSU.beans.factory.annotation.EnableLubboApplication;
 import org.homelessYSU.web.ContextLoaderListener;
 import org.homelessYSU.web.servlet.DispatcherServlet;
 
@@ -15,12 +16,18 @@ public class LubboApplication {
         System.out.println(location);
         String name = clazz.getPackage().getName();
         System.out.println("name = " + name);
-        run(name);
+        int port = 0;
+        try {
+            port = Class.forName(clazz.getName()).getAnnotation(EnableLubboApplication.class).port();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        run(name,port);
     }
 
-    public static void run(String packageLocation) {
+    public static void run(String packageLocation,int port) {
         Tomcat tomcat = new Tomcat();
-        int port = 8080;
+
         tomcat.setPort(port); // 设置Tomcat的端口号
         Context ctx = tomcat.addContext("", null);
 //

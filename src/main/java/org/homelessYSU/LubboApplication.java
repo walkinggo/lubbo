@@ -4,28 +4,33 @@ import org.apache.catalina.Context;
 import org.apache.catalina.LifecycleException;
 import org.apache.catalina.connector.Connector;
 import org.apache.catalina.startup.Tomcat;
+import org.homelessYSU.beans.factory.annotation.AOP.LubboAOPScanner;
 import org.homelessYSU.beans.factory.annotation.EnableLubboApplication;
 import org.homelessYSU.web.ContextLoaderListener;
 import org.homelessYSU.web.servlet.DispatcherServlet;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.URL;
 
 public class LubboApplication {
+    private static final Logger logger = LoggerFactory.getLogger(LubboApplication.class);
+
     public static void run(Class clazz) {
         URL location = clazz.getProtectionDomain().getCodeSource().getLocation();
-        System.out.println(location);
+        logger.info("location : " + location);
         String name = clazz.getPackage().getName();
-        System.out.println("name = " + name);
+        logger.info("ApplicationName : " + name);
         int port = 0;
         try {
             port = Class.forName(clazz.getName()).getAnnotation(EnableLubboApplication.class).port();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        run(name,port);
+        run(name, port);
     }
 
-    public static void run(String packageLocation,int port) {
+    public static void run(String packageLocation, int port) {
         Tomcat tomcat = new Tomcat();
 
         tomcat.setPort(port); // 设置Tomcat的端口号
@@ -53,8 +58,8 @@ public class LubboApplication {
             e.printStackTrace();
         }
 
-        System.out.println("Tomcat started on port " + port);
-        System.out.println("Visit http://127.0.0.1:" + port);
+        logger.info("Tomcat started on port " + port);
+        logger.info("Visit http://127.0.0.1:" + port);
         tomcat.getServer().await();
 
     }

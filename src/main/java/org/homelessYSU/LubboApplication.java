@@ -13,6 +13,8 @@ import org.slf4j.LoggerFactory;
 
 import java.net.URL;
 
+import static org.homelessYSU.web.ContextLoaderListener.CONFIG_LOCATION_PARAM;
+
 public class LubboApplication {
     private static final Logger logger = LoggerFactory.getLogger(LubboApplication.class);
 
@@ -40,7 +42,6 @@ public class LubboApplication {
         ctx.getServletContext().setAttribute("packageLocation", packageLocation);
 //
 
-
         tomcat.addServlet(ctx, "DispatcherServlet", new DispatcherServlet());
 
 
@@ -58,7 +59,7 @@ public class LubboApplication {
             e.printStackTrace();
         }
 
-        logger.info("Tomcat started on port " + port);
+        logger.info("Lubbo started on port " + port);
         logger.info("Visit http://127.0.0.1:" + port);
         tomcat.getServer().await();
 

@@ -9,8 +9,8 @@ import java.net.URL;
 import java.util.Iterator;
 
 /**
- * @description:负责读取具体的XML文件并保存
  * @param
+ * @description:负责读取具体的XML文件并保存
  * @return:
  * @author: walkinggo
  * @time: 2024/4/2 20:06
@@ -21,12 +21,12 @@ public class ClassPathXmlResource implements Resource {
     Iterator<Element> elementIterator;
 
     public ClassPathXmlResource(String fileName) {
-        SAXReader saxReader=new SAXReader();
-        URL xmlPath=this.getClass().getClassLoader().getResource(fileName);
+        SAXReader saxReader = new SAXReader();
+        URL xmlPath = this.getClass().getClassLoader().getResource(fileName);
         try {
             this.document = saxReader.read(xmlPath);
-            this.rootElement=document.getRootElement();
-            this.elementIterator=this.rootElement.elementIterator();
+            this.rootElement = document.getRootElement();
+            this.elementIterator = this.rootElement.elementIterator();
         } catch (DocumentException e) {
             e.printStackTrace();
         }

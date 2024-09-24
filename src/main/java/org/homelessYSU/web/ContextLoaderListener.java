@@ -30,9 +30,10 @@ public class ContextLoaderListener implements ServletContextListener {
     }
 
     private void initWebApplicationContext(ServletContext servletContext) {
-        String sContextLocation = servletContext.getInitParameter(CONFIG_LOCATION_PARAM);
+//        String sContextLocation = servletContext.getInitParameter(CONFIG_LOCATION_PARAM);
         String packageLocation = (String) servletContext.getAttribute("packageLocation");
-        WebApplicationContext wac = new XmlWebApplicationContext(sContextLocation,packageLocation);
+//        WebApplicationContext wac = new XmlWebApplicationContext(sContextLocation,packageLocation);
+        WebApplicationContext wac = new XmlWebApplicationContext("applicationContext.xml",packageLocation);
         wac.setServletContext(servletContext);
         this.context = wac;
         servletContext.setAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE, this.context);

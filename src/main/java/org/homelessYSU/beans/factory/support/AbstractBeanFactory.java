@@ -53,11 +53,10 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
                 BeanDefinition bd = beanDefinitionMap.get(beanName);
                 if (bd != null) {
                     singleton = createBean(bd);
-                    this.registerBean(beanName, singleton);
 
                     //beanpostprocessor
                     //step 1 : postProcessBeforeInitialization
-                    applyBeanPostProcessorsBeforeInitialization(singleton, beanName);
+                    singleton = applyBeanPostProcessorsBeforeInitialization(singleton, beanName);
 
                     //step 2 : init-method
                     if (bd.getInitMethodName() != null && !bd.getInitMethodName().equals("")) {
@@ -65,7 +64,9 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
                     }
 
                     //step 3 : postProcessAfterInitialization
-                    applyBeanPostProcessorsAfterInitialization(singleton, beanName);
+                    singleton = applyBeanPostProcessorsAfterInitialization(singleton, beanName);
+
+                    this.registerBean(beanName, singleton);
                 } else {
                     return null;
                 }

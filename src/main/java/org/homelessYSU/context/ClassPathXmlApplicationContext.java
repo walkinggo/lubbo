@@ -2,6 +2,7 @@ package org.homelessYSU.context;
 
 import org.homelessYSU.beans.*;
 import org.homelessYSU.beans.factory.AbstractApplicationContext;
+import org.homelessYSU.beans.factory.annotation.AOP.AopBeanPostProcessor;
 import org.homelessYSU.beans.factory.annotation.AOP.LubboAOPScanner;
 import org.homelessYSU.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor;
 import org.homelessYSU.beans.factory.annotation.LubboComponentScanner;
@@ -82,6 +83,8 @@ public class ClassPathXmlApplicationContext extends AbstractApplicationContext {
     // 在这里注册了autowired处理器，这样就可以自动填充@autowired标注的东西了。
     protected void registerBeanPostProcessors(ConfigurableListableBeanFactory bf) {
         this.beanFactory.addBeforeInitializaBeanPostProcessor(new AutowiredAnnotationBeanPostProcessor());
+        this.beanFactory.addAfterInitializaBeanPostProcessor(new AopBeanPostProcessor());
+        // add after processor to finish AOP
     }
 
     //    @Override

@@ -1,4 +1,5 @@
 package org.homelessYSU.web;
+import org.homelessYSU.beans.factory.annotation.AOP.AopBeanPostProcessor;
 import org.homelessYSU.beans.factory.annotation.AOP.LubboAOPScanner;
 import org.homelessYSU.beans.factory.annotation.LubboComponentScanner;
 import org.homelessYSU.beans.factory.config.ConfigurableListableBeanFactory;
@@ -32,14 +33,16 @@ public class ContextLoaderListener implements ServletContextListener {
     private void initWebApplicationContext(ServletContext servletContext) {
 //        String sContextLocation = servletContext.getInitParameter(CONFIG_LOCATION_PARAM);
         String packageLocation = (String) servletContext.getAttribute("packageLocation");
+//        LubboAOPScanner scanner = new LubboAOPScanner();
+//        Map map = scanner.loadBeanDefinitions(packageLocation);
+//        servletContext.setAttribute(LubboAOPScanner.AOP_ATTRIBUTE,map);
+        AopBeanPostProcessor.AopScan(packageLocation);
 //        WebApplicationContext wac = new XmlWebApplicationContext(sContextLocation,packageLocation);
         WebApplicationContext wac = new XmlWebApplicationContext("applicationContext.xml",packageLocation);
         wac.setServletContext(servletContext);
         this.context = wac;
         servletContext.setAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE, this.context);
-        LubboAOPScanner scanner = new LubboAOPScanner();
-        Map map = scanner.loadBeanDefinitions(packageLocation);
-        servletContext.setAttribute(LubboAOPScanner.AOP_ATTRIBUTE,map);
+
 
         System.out.println("  _    _   _ ____  ____   ___  \n" +
                 " | |  | | | | __ )| __ ) / _ \\ \n" +

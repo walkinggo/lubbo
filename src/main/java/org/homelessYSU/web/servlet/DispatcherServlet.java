@@ -133,28 +133,10 @@ public class DispatcherServlet extends HttpServlet {
         }
 
         HandlerAdapter ha = this.handlerAdapter;
-        postprocessBeforeService(handlerMethod.getMethod());
+//        postprocessBeforeService(handlerMethod.getMethod());
         ha.handle(processedRequest, response, handlerMethod);
-        postprocessAfterService(handlerMethod.getMethod());
+//        postprocessAfterService(handlerMethod.getMethod());
     }
 
-    protected void postprocessBeforeService(Method method){
-        if(methodAopProxyWrapperMap.containsKey(LubboAOPScanner.getAopUrl(method.getName(),method.getDeclaringClass().getName()))){
-            try {
-                methodAopProxyWrapperMap.get(LubboAOPScanner.getAopUrl(method.getName(),method.getDeclaringClass().getName())).getBefchainedInterceptor().intercept();
-            } catch (Throwable throwable) {
-                throwable.printStackTrace();
-            }
-        }
-    }
-    protected void postprocessAfterService(Method method){
-        if(methodAopProxyWrapperMap.containsKey(LubboAOPScanner.getAopUrl(method.getName(),method.getDeclaringClass().getName()))){
-            try {
-                methodAopProxyWrapperMap.get(LubboAOPScanner.getAopUrl(method.getName(),method.getDeclaringClass().getName())).getAftchainedInterceptor().intercept();
-            }
-            catch (Throwable throwable){
-                throwable.printStackTrace();
-            }
-        }
-    }
+
 }

@@ -15,7 +15,7 @@ public class ChainedInterceptor {
         for (AopMethodInvoker interceptor : interceptors) {
             result = interceptor.Invoker();
         }
-        return null;
+        return result;
     }
     public void addInterceptor(AopMethodInvoker interceptor) {
         interceptors.add(interceptor);

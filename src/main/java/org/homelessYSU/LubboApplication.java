@@ -23,7 +23,7 @@ public class LubboApplication {
         logger.info("location : " + location);
         String name = clazz.getPackage().getName();
         logger.info("ApplicationName : " + name);
-        int port = 0;
+        int port = 8080;
         try {
             port = Class.forName(clazz.getName()).getAnnotation(EnableLubboApplication.class).port();
         } catch (ClassNotFoundException e) {
